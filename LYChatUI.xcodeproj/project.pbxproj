@@ -1,0 +1,587 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BF45F41D259DA6C0000DB627 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF45F41C259DA6C0000DB627 /* AppDelegate.m */; };
+		BF45F420259DA6C0000DB627 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF45F41F259DA6C0000DB627 /* SceneDelegate.m */; };
+		BF45F423259DA6C0000DB627 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF45F422259DA6C0000DB627 /* ViewController.m */; };
+		BF45F426259DA6C0000DB627 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF45F424259DA6C0000DB627 /* Main.storyboard */; };
+		BF45F428259DA6C4000DB627 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BF45F427259DA6C4000DB627 /* Assets.xcassets */; };
+		BF45F42B259DA6C4000DB627 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF45F429259DA6C4000DB627 /* LaunchScreen.storyboard */; };
+		BF45F42E259DA6C4000DB627 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF45F42D259DA6C4000DB627 /* main.m */; };
+		BF45F438259DA6C5000DB627 /* LYChatUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF45F437259DA6C5000DB627 /* LYChatUITests.m */; };
+		BF45F443259DA6C5000DB627 /* LYChatUIUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF45F442259DA6C5000DB627 /* LYChatUIUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BF45F434259DA6C5000DB627 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF45F410259DA6C0000DB627 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF45F417259DA6C0000DB627;
+			remoteInfo = LYChatUI;
+		};
+		BF45F43F259DA6C5000DB627 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BF45F410259DA6C0000DB627 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BF45F417259DA6C0000DB627;
+			remoteInfo = LYChatUI;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		BF45F418259DA6C0000DB627 /* LYChatUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LYChatUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF45F41B259DA6C0000DB627 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		BF45F41C259DA6C0000DB627 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		BF45F41E259DA6C0000DB627 /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
+		BF45F41F259DA6C0000DB627 /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
+		BF45F421259DA6C0000DB627 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		BF45F422259DA6C0000DB627 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		BF45F425259DA6C0000DB627 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BF45F427259DA6C4000DB627 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BF45F42A259DA6C4000DB627 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		BF45F42C259DA6C4000DB627 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF45F42D259DA6C4000DB627 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		BF45F433259DA6C5000DB627 /* LYChatUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LYChatUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF45F437259DA6C5000DB627 /* LYChatUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYChatUITests.m; sourceTree = "<group>"; };
+		BF45F439259DA6C5000DB627 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF45F43E259DA6C5000DB627 /* LYChatUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LYChatUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF45F442259DA6C5000DB627 /* LYChatUIUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYChatUIUITests.m; sourceTree = "<group>"; };
+		BF45F444259DA6C5000DB627 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BF45F415259DA6C0000DB627 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF45F430259DA6C5000DB627 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF45F43B259DA6C5000DB627 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BF45F40F259DA6C0000DB627 = {
+			isa = PBXGroup;
+			children = (
+				BF45F41A259DA6C0000DB627 /* LYChatUI */,
+				BF45F436259DA6C5000DB627 /* LYChatUITests */,
+				BF45F441259DA6C5000DB627 /* LYChatUIUITests */,
+				BF45F419259DA6C0000DB627 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		BF45F419259DA6C0000DB627 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BF45F418259DA6C0000DB627 /* LYChatUI.app */,
+				BF45F433259DA6C5000DB627 /* LYChatUITests.xctest */,
+				BF45F43E259DA6C5000DB627 /* LYChatUIUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BF45F41A259DA6C0000DB627 /* LYChatUI */ = {
+			isa = PBXGroup;
+			children = (
+				BF45F41B259DA6C0000DB627 /* AppDelegate.h */,
+				BF45F41C259DA6C0000DB627 /* AppDelegate.m */,
+				BF45F41E259DA6C0000DB627 /* SceneDelegate.h */,
+				BF45F41F259DA6C0000DB627 /* SceneDelegate.m */,
+				BF45F421259DA6C0000DB627 /* ViewController.h */,
+				BF45F422259DA6C0000DB627 /* ViewController.m */,
+				BF45F424259DA6C0000DB627 /* Main.storyboard */,
+				BF45F427259DA6C4000DB627 /* Assets.xcassets */,
+				BF45F429259DA6C4000DB627 /* LaunchScreen.storyboard */,
+				BF45F42C259DA6C4000DB627 /* Info.plist */,
+				BF45F42D259DA6C4000DB627 /* main.m */,
+			);
+			path = LYChatUI;
+			sourceTree = "<group>";
+		};
+		BF45F436259DA6C5000DB627 /* LYChatUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BF45F437259DA6C5000DB627 /* LYChatUITests.m */,
+				BF45F439259DA6C5000DB627 /* Info.plist */,
+			);
+			path = LYChatUITests;
+			sourceTree = "<group>";
+		};
+		BF45F441259DA6C5000DB627 /* LYChatUIUITests */ = {
+			isa = PBXGroup;
+			children = (
+				BF45F442259DA6C5000DB627 /* LYChatUIUITests.m */,
+				BF45F444259DA6C5000DB627 /* Info.plist */,
+			);
+			path = LYChatUIUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BF45F417259DA6C0000DB627 /* LYChatUI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF45F447259DA6C5000DB627 /* Build configuration list for PBXNativeTarget "LYChatUI" */;
+			buildPhases = (
+				BF45F414259DA6C0000DB627 /* Sources */,
+				BF45F415259DA6C0000DB627 /* Frameworks */,
+				BF45F416259DA6C0000DB627 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LYChatUI;
+			productName = LYChatUI;
+			productReference = BF45F418259DA6C0000DB627 /* LYChatUI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BF45F432259DA6C5000DB627 /* LYChatUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF45F44A259DA6C5000DB627 /* Build configuration list for PBXNativeTarget "LYChatUITests" */;
+			buildPhases = (
+				BF45F42F259DA6C5000DB627 /* Sources */,
+				BF45F430259DA6C5000DB627 /* Frameworks */,
+				BF45F431259DA6C5000DB627 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BF45F435259DA6C5000DB627 /* PBXTargetDependency */,
+			);
+			name = LYChatUITests;
+			productName = LYChatUITests;
+			productReference = BF45F433259DA6C5000DB627 /* LYChatUITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		BF45F43D259DA6C5000DB627 /* LYChatUIUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF45F44D259DA6C5000DB627 /* Build configuration list for PBXNativeTarget "LYChatUIUITests" */;
+			buildPhases = (
+				BF45F43A259DA6C5000DB627 /* Sources */,
+				BF45F43B259DA6C5000DB627 /* Frameworks */,
+				BF45F43C259DA6C5000DB627 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BF45F440259DA6C5000DB627 /* PBXTargetDependency */,
+			);
+			name = LYChatUIUITests;
+			productName = LYChatUIUITests;
+			productReference = BF45F43E259DA6C5000DB627 /* LYChatUIUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BF45F410259DA6C0000DB627 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1230;
+				TargetAttributes = {
+					BF45F417259DA6C0000DB627 = {
+						CreatedOnToolsVersion = 12.3;
+					};
+					BF45F432259DA6C5000DB627 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = BF45F417259DA6C0000DB627;
+					};
+					BF45F43D259DA6C5000DB627 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = BF45F417259DA6C0000DB627;
+					};
+				};
+			};
+			buildConfigurationList = BF45F413259DA6C0000DB627 /* Build configuration list for PBXProject "LYChatUI" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BF45F40F259DA6C0000DB627;
+			productRefGroup = BF45F419259DA6C0000DB627 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BF45F417259DA6C0000DB627 /* LYChatUI */,
+				BF45F432259DA6C5000DB627 /* LYChatUITests */,
+				BF45F43D259DA6C5000DB627 /* LYChatUIUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BF45F416259DA6C0000DB627 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF45F42B259DA6C4000DB627 /* LaunchScreen.storyboard in Resources */,
+				BF45F428259DA6C4000DB627 /* Assets.xcassets in Resources */,
+				BF45F426259DA6C0000DB627 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF45F431259DA6C5000DB627 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF45F43C259DA6C5000DB627 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BF45F414259DA6C0000DB627 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF45F423259DA6C0000DB627 /* ViewController.m in Sources */,
+				BF45F41D259DA6C0000DB627 /* AppDelegate.m in Sources */,
+				BF45F42E259DA6C4000DB627 /* main.m in Sources */,
+				BF45F420259DA6C0000DB627 /* SceneDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF45F42F259DA6C5000DB627 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF45F438259DA6C5000DB627 /* LYChatUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BF45F43A259DA6C5000DB627 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF45F443259DA6C5000DB627 /* LYChatUIUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BF45F435259DA6C5000DB627 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BF45F417259DA6C0000DB627 /* LYChatUI */;
+			targetProxy = BF45F434259DA6C5000DB627 /* PBXContainerItemProxy */;
+		};
+		BF45F440259DA6C5000DB627 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BF45F417259DA6C0000DB627 /* LYChatUI */;
+			targetProxy = BF45F43F259DA6C5000DB627 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BF45F424259DA6C0000DB627 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF45F425259DA6C0000DB627 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BF45F429259DA6C4000DB627 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BF45F42A259DA6C4000DB627 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BF45F445259DA6C5000DB627 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		BF45F446259DA6C5000DB627 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BF45F448259DA6C5000DB627 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LYChatUI/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ly.LYChatUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		BF45F449259DA6C5000DB627 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LYChatUI/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ly.LYChatUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		BF45F44B259DA6C5000DB627 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LYChatUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ly.LYChatUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LYChatUI.app/LYChatUI";
+			};
+			name = Debug;
+		};
+		BF45F44C259DA6C5000DB627 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LYChatUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ly.LYChatUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LYChatUI.app/LYChatUI";
+			};
+			name = Release;
+		};
+		BF45F44E259DA6C5000DB627 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LYChatUIUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ly.LYChatUIUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LYChatUI;
+			};
+			name = Debug;
+		};
+		BF45F44F259DA6C5000DB627 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LYChatUIUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ly.LYChatUIUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LYChatUI;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BF45F413259DA6C0000DB627 /* Build configuration list for PBXProject "LYChatUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF45F445259DA6C5000DB627 /* Debug */,
+				BF45F446259DA6C5000DB627 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF45F447259DA6C5000DB627 /* Build configuration list for PBXNativeTarget "LYChatUI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF45F448259DA6C5000DB627 /* Debug */,
+				BF45F449259DA6C5000DB627 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF45F44A259DA6C5000DB627 /* Build configuration list for PBXNativeTarget "LYChatUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF45F44B259DA6C5000DB627 /* Debug */,
+				BF45F44C259DA6C5000DB627 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF45F44D259DA6C5000DB627 /* Build configuration list for PBXNativeTarget "LYChatUIUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BF45F44E259DA6C5000DB627 /* Debug */,
+				BF45F44F259DA6C5000DB627 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BF45F410259DA6C0000DB627 /* Project object */;
+}
