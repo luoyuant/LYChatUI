@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BF2202BC25A5960D00B5F1D0 /* LYChatGlobalFontConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2202BB25A5960D00B5F1D0 /* LYChatGlobalFontConfig.m */; };
+		BF22269E25A07B3D008AF9BC /* LYSessionTableConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BF22269B25A07B3D008AF9BC /* LYSessionTableConfig.m */; };
+		BF22269F25A07B3D008AF9BC /* LYSessionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF22269C25A07B3D008AF9BC /* LYSessionViewController.m */; };
+		BF2226A525A07BB1008AF9BC /* LYSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2226A425A07BB1008AF9BC /* LYSessionManager.m */; };
+		BF2226AB25A08269008AF9BC /* LYSessionMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2226AA25A08269008AF9BC /* LYSessionMessage.m */; };
+		BF2226B725A08A6B008AF9BC /* LYSessionCellLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2226B625A08A6B008AF9BC /* LYSessionCellLayout.m */; };
+		BF2226BD25A08D73008AF9BC /* LYSessionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2226BC25A08D73008AF9BC /* LYSessionCell.m */; };
+		BF2B114925A6BC9F00F81766 /* LYSessionRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2B114825A6BC9F00F81766 /* LYSessionRefreshControl.m */; };
+		BF2B119825A70E8000F81766 /* LYSessionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = BF2B119725A70E8000F81766 /* LYSessionDataSource.m */; };
+		BF3B3F2F25A313AF0034C5C8 /* LYSessionContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = BF3B3F2E25A313AF0034C5C8 /* LYSessionContentView.m */; };
 		BF45F41D259DA6C0000DB627 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF45F41C259DA6C0000DB627 /* AppDelegate.m */; };
 		BF45F420259DA6C0000DB627 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BF45F41F259DA6C0000DB627 /* SceneDelegate.m */; };
 		BF45F423259DA6C0000DB627 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BF45F422259DA6C0000DB627 /* ViewController.m */; };
@@ -16,6 +26,13 @@
 		BF45F42E259DA6C4000DB627 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BF45F42D259DA6C4000DB627 /* main.m */; };
 		BF45F438259DA6C5000DB627 /* LYChatUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF45F437259DA6C5000DB627 /* LYChatUITests.m */; };
 		BF45F443259DA6C5000DB627 /* LYChatUIUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = BF45F442259DA6C5000DB627 /* LYChatUIUITests.m */; };
+		BF6341A725A4155A009D31A1 /* LYChatGlobalConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6341A625A4155A009D31A1 /* LYChatGlobalConfig.m */; };
+		BF6341AD25A41608009D31A1 /* LYChatGlobalColorConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = BF6341AC25A41608009D31A1 /* LYChatGlobalColorConfig.m */; };
+		BFB493B925A7F5F400143E1C /* LYSession.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB493B825A7F5F400143E1C /* LYSession.m */; };
+		BFB493C225A8000F00143E1C /* LYChatUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB493C125A8000F00143E1C /* LYChatUserModel.m */; };
+		BFB493D225A8287100143E1C /* LYSessionTimestampMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB493D125A8287100143E1C /* LYSessionTimestampMessage.m */; };
+		BFB493D825A8293B00143E1C /* LYSessionTimestampCellLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB493D725A8293B00143E1C /* LYSessionTimestampCellLayout.m */; };
+		BFB493E225A8399B00143E1C /* LYSessionTimestampCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BFB493E125A8399B00143E1C /* LYSessionTimestampCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +53,26 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BF2202BA25A5960D00B5F1D0 /* LYChatGlobalFontConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYChatGlobalFontConfig.h; sourceTree = "<group>"; };
+		BF2202BB25A5960D00B5F1D0 /* LYChatGlobalFontConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYChatGlobalFontConfig.m; sourceTree = "<group>"; };
+		BF22269A25A07B3D008AF9BC /* LYSessionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYSessionViewController.h; sourceTree = "<group>"; };
+		BF22269B25A07B3D008AF9BC /* LYSessionTableConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYSessionTableConfig.m; sourceTree = "<group>"; };
+		BF22269C25A07B3D008AF9BC /* LYSessionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LYSessionViewController.m; sourceTree = "<group>"; };
+		BF22269D25A07B3D008AF9BC /* LYSessionTableConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LYSessionTableConfig.h; sourceTree = "<group>"; };
+		BF2226A325A07BB1008AF9BC /* LYSessionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYSessionManager.h; sourceTree = "<group>"; };
+		BF2226A425A07BB1008AF9BC /* LYSessionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYSessionManager.m; sourceTree = "<group>"; };
+		BF2226A925A08269008AF9BC /* LYSessionMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYSessionMessage.h; sourceTree = "<group>"; };
+		BF2226AA25A08269008AF9BC /* LYSessionMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYSessionMessage.m; sourceTree = "<group>"; };
+		BF2226B525A08A6B008AF9BC /* LYSessionCellLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYSessionCellLayout.h; sourceTree = "<group>"; };
+		BF2226B625A08A6B008AF9BC /* LYSessionCellLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYSessionCellLayout.m; sourceTree = "<group>"; };
+		BF2226BB25A08D73008AF9BC /* LYSessionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYSessionCell.h; sourceTree = "<group>"; };
+		BF2226BC25A08D73008AF9BC /* LYSessionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYSessionCell.m; sourceTree = "<group>"; };
+		BF2B114725A6BC9F00F81766 /* LYSessionRefreshControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYSessionRefreshControl.h; sourceTree = "<group>"; };
+		BF2B114825A6BC9F00F81766 /* LYSessionRefreshControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYSessionRefreshControl.m; sourceTree = "<group>"; };
+		BF2B119625A70E8000F81766 /* LYSessionDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYSessionDataSource.h; sourceTree = "<group>"; };
+		BF2B119725A70E8000F81766 /* LYSessionDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYSessionDataSource.m; sourceTree = "<group>"; };
+		BF3B3F2D25A313AF0034C5C8 /* LYSessionContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYSessionContentView.h; sourceTree = "<group>"; };
+		BF3B3F2E25A313AF0034C5C8 /* LYSessionContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYSessionContentView.m; sourceTree = "<group>"; };
 		BF45F418259DA6C0000DB627 /* LYChatUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LYChatUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF45F41B259DA6C0000DB627 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BF45F41C259DA6C0000DB627 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -54,6 +91,21 @@
 		BF45F43E259DA6C5000DB627 /* LYChatUIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LYChatUIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF45F442259DA6C5000DB627 /* LYChatUIUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYChatUIUITests.m; sourceTree = "<group>"; };
 		BF45F444259DA6C5000DB627 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BF6341A525A4155A009D31A1 /* LYChatGlobalConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYChatGlobalConfig.h; sourceTree = "<group>"; };
+		BF6341A625A4155A009D31A1 /* LYChatGlobalConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYChatGlobalConfig.m; sourceTree = "<group>"; };
+		BF6341AB25A41608009D31A1 /* LYChatGlobalColorConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYChatGlobalColorConfig.h; sourceTree = "<group>"; };
+		BF6341AC25A41608009D31A1 /* LYChatGlobalColorConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYChatGlobalColorConfig.m; sourceTree = "<group>"; };
+		BFB493B725A7F5F400143E1C /* LYSession.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYSession.h; sourceTree = "<group>"; };
+		BFB493B825A7F5F400143E1C /* LYSession.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYSession.m; sourceTree = "<group>"; };
+		BFB493C025A8000F00143E1C /* LYChatUserModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYChatUserModel.h; sourceTree = "<group>"; };
+		BFB493C125A8000F00143E1C /* LYChatUserModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYChatUserModel.m; sourceTree = "<group>"; };
+		BFB493CC25A805F500143E1C /* LYChatHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYChatHeader.h; sourceTree = "<group>"; };
+		BFB493D025A8287100143E1C /* LYSessionTimestampMessage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYSessionTimestampMessage.h; sourceTree = "<group>"; };
+		BFB493D125A8287100143E1C /* LYSessionTimestampMessage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYSessionTimestampMessage.m; sourceTree = "<group>"; };
+		BFB493D625A8293B00143E1C /* LYSessionTimestampCellLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYSessionTimestampCellLayout.h; sourceTree = "<group>"; };
+		BFB493D725A8293B00143E1C /* LYSessionTimestampCellLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYSessionTimestampCellLayout.m; sourceTree = "<group>"; };
+		BFB493E025A8399B00143E1C /* LYSessionTimestampCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LYSessionTimestampCell.h; sourceTree = "<group>"; };
+		BFB493E125A8399B00143E1C /* LYSessionTimestampCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LYSessionTimestampCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +156,7 @@
 		BF45F41A259DA6C0000DB627 /* LYChatUI */ = {
 			isa = PBXGroup;
 			children = (
+				BF45F453259DA776000DB627 /* LYChatUI */,
 				BF45F41B259DA6C0000DB627 /* AppDelegate.h */,
 				BF45F41C259DA6C0000DB627 /* AppDelegate.m */,
 				BF45F41E259DA6C0000DB627 /* SceneDelegate.h */,
@@ -135,6 +188,80 @@
 				BF45F444259DA6C5000DB627 /* Info.plist */,
 			);
 			path = LYChatUIUITests;
+			sourceTree = "<group>";
+		};
+		BF45F453259DA776000DB627 /* LYChatUI */ = {
+			isa = PBXGroup;
+			children = (
+				BF6341A425A41519009D31A1 /* Global */,
+				BF45F45A259DB754000DB627 /* Chat */,
+				BF45F457259DB754000DB627 /* Session */,
+			);
+			path = LYChatUI;
+			sourceTree = "<group>";
+		};
+		BF45F457259DB754000DB627 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				BF2226A325A07BB1008AF9BC /* LYSessionManager.h */,
+				BF2226A425A07BB1008AF9BC /* LYSessionManager.m */,
+				BF22269D25A07B3D008AF9BC /* LYSessionTableConfig.h */,
+				BF22269B25A07B3D008AF9BC /* LYSessionTableConfig.m */,
+				BF2B119625A70E8000F81766 /* LYSessionDataSource.h */,
+				BF2B119725A70E8000F81766 /* LYSessionDataSource.m */,
+				BFB493B725A7F5F400143E1C /* LYSession.h */,
+				BFB493B825A7F5F400143E1C /* LYSession.m */,
+				BF22269A25A07B3D008AF9BC /* LYSessionViewController.h */,
+				BF22269C25A07B3D008AF9BC /* LYSessionViewController.m */,
+				BF2226A925A08269008AF9BC /* LYSessionMessage.h */,
+				BF2226AA25A08269008AF9BC /* LYSessionMessage.m */,
+				BFB493D025A8287100143E1C /* LYSessionTimestampMessage.h */,
+				BFB493D125A8287100143E1C /* LYSessionTimestampMessage.m */,
+				BF2226B525A08A6B008AF9BC /* LYSessionCellLayout.h */,
+				BF2226B625A08A6B008AF9BC /* LYSessionCellLayout.m */,
+				BFB493D625A8293B00143E1C /* LYSessionTimestampCellLayout.h */,
+				BFB493D725A8293B00143E1C /* LYSessionTimestampCellLayout.m */,
+				BF2226BB25A08D73008AF9BC /* LYSessionCell.h */,
+				BF2226BC25A08D73008AF9BC /* LYSessionCell.m */,
+				BFB493E025A8399B00143E1C /* LYSessionTimestampCell.h */,
+				BFB493E125A8399B00143E1C /* LYSessionTimestampCell.m */,
+				BF3B3F2D25A313AF0034C5C8 /* LYSessionContentView.h */,
+				BF3B3F2E25A313AF0034C5C8 /* LYSessionContentView.m */,
+				BF2B114725A6BC9F00F81766 /* LYSessionRefreshControl.h */,
+				BF2B114825A6BC9F00F81766 /* LYSessionRefreshControl.m */,
+				BFB493C025A8000F00143E1C /* LYChatUserModel.h */,
+				BFB493C125A8000F00143E1C /* LYChatUserModel.m */,
+				BF45F458259DB754000DB627 /* Cells */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
+		BF45F458259DB754000DB627 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		BF45F45A259DB754000DB627 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		BF6341A425A41519009D31A1 /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				BFB493CC25A805F500143E1C /* LYChatHeader.h */,
+				BF6341A525A4155A009D31A1 /* LYChatGlobalConfig.h */,
+				BF6341A625A4155A009D31A1 /* LYChatGlobalConfig.m */,
+				BF6341AB25A41608009D31A1 /* LYChatGlobalColorConfig.h */,
+				BF6341AC25A41608009D31A1 /* LYChatGlobalColorConfig.m */,
+				BF2202BA25A5960D00B5F1D0 /* LYChatGlobalFontConfig.h */,
+				BF2202BB25A5960D00B5F1D0 /* LYChatGlobalFontConfig.m */,
+			);
+			path = Global;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,10 +393,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFB493D825A8293B00143E1C /* LYSessionTimestampCellLayout.m in Sources */,
+				BF22269E25A07B3D008AF9BC /* LYSessionTableConfig.m in Sources */,
+				BF3B3F2F25A313AF0034C5C8 /* LYSessionContentView.m in Sources */,
 				BF45F423259DA6C0000DB627 /* ViewController.m in Sources */,
+				BF2226A525A07BB1008AF9BC /* LYSessionManager.m in Sources */,
+				BF2B119825A70E8000F81766 /* LYSessionDataSource.m in Sources */,
+				BF22269F25A07B3D008AF9BC /* LYSessionViewController.m in Sources */,
 				BF45F41D259DA6C0000DB627 /* AppDelegate.m in Sources */,
+				BF2226AB25A08269008AF9BC /* LYSessionMessage.m in Sources */,
+				BF6341A725A4155A009D31A1 /* LYChatGlobalConfig.m in Sources */,
+				BFB493D225A8287100143E1C /* LYSessionTimestampMessage.m in Sources */,
+				BFB493E225A8399B00143E1C /* LYSessionTimestampCell.m in Sources */,
+				BFB493C225A8000F00143E1C /* LYChatUserModel.m in Sources */,
 				BF45F42E259DA6C4000DB627 /* main.m in Sources */,
+				BF6341AD25A41608009D31A1 /* LYChatGlobalColorConfig.m in Sources */,
+				BF2202BC25A5960D00B5F1D0 /* LYChatGlobalFontConfig.m in Sources */,
+				BF2226BD25A08D73008AF9BC /* LYSessionCell.m in Sources */,
+				BF2226B725A08A6B008AF9BC /* LYSessionCellLayout.m in Sources */,
 				BF45F420259DA6C0000DB627 /* SceneDelegate.m in Sources */,
+				BF2B114925A6BC9F00F81766 /* LYSessionRefreshControl.m in Sources */,
+				BFB493B925A7F5F400143E1C /* LYSession.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,7 +519,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -428,7 +572,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -442,6 +586,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2K26LU5HS2;
 				INFOPLIST_FILE = LYChatUI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -459,6 +604,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2K26LU5HS2;
 				INFOPLIST_FILE = LYChatUI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

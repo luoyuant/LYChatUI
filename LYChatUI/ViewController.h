@@ -12,3 +12,9 @@
 
 @end
 
+
+@interface CAShapeLayer (LYTest)
+
++ (instancetype)createMaskLayerWithView:(UIView *)view;
+
+@end
