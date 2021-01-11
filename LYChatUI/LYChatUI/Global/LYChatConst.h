@@ -1,16 +1,9 @@
 //
-//  LYChatHeader.h
+//  LYChatConst.h
 //  LYChatUI
 //
-//  Created by luoyuan on 2021/1/8.
+//  Created by luoyuan on 2021/1/11.
 //
-
-#import <Foundation/Foundation.h>
-
-#ifndef LYChatHeader_h
-#define LYChatHeader_h
-
-#ifdef __OBJC__
 
 #ifdef DEBUG
 #define LYDLog( s, ... ) printf("class: <%p %s:(%d) > method: %s \n%s\n", self, [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, __PRETTY_FUNCTION__, [[NSString stringWithFormat:(s), ##__VA_ARGS__] UTF8String] )
@@ -18,7 +11,3 @@
 #else
 #define LYDLog(...)
 #endif
-
-#endif
-
-#endif /* LYChatHeader_h */

@@ -7,7 +7,7 @@
 
 #import "LYSessionViewController.h"
 #import "LYChatGlobalConfig.h"
-#import "LYChatHeader.h"
+#import "LYChatConst.h"
 
 @interface LYSessionViewController ()
 

@@ -8,7 +8,7 @@
 #import "LYSessionCellLayout.h"
 #import "LYChatGlobalConfig.h"
 #import "LYSessionCell.h"
-#import "LYChatHeader.h"
+#import "LYChatConst.h"
 
 @interface LYSessionCellLayout ()
 
