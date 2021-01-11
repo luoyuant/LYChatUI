@@ -94,8 +94,8 @@ Pod::Spec.new do |s|
   s.source_files  = "LYChatUI/LYChatUI/**/*.{h,m}"
   s.exclude_files = "Classes/Exclude"
 
-  # s.public_header_files = "Classes/**/*.h"
-
+  s.public_header_files = "LYChatUI/LYChatUI/LYChatConst.h"
+  # s.prefix_header_contents = '#import "ApptentiveLog.h"', '#import "ApptentiveAssert.h"', '#import "ApptentiveSafeCollections.h"'
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
@@ -122,10 +122,7 @@ Pod::Spec.new do |s|
 
   #s.library   = "xml2.2.tbd"
 
-  #-------------------------------1.0.7版本去掉 2018-02-05-----------------------
-  # s.libraries = "xml2"
-  #-----------------------------------------------------------------------------
-
+  
   # ――― Project Settings ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
   #
   #  If your library depends on compiler flags you can set them in the xcconfig hash
