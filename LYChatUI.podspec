@@ -1,5 +1,5 @@
 #
-#  Be sure to run `pod spec lint MOFSPickerManager.podspec' to ensure this is a
+#  Be sure to run `pod spec lint LYChatUI.podspec' to ensure this is a
 #  valid spec and to remove all comments including this before submitting the spec.
 #
 #  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
@@ -65,7 +65,7 @@ Pod::Spec.new do |s|
   #
 
   # s.platform     = :ios
-  s.platform     = :ios, "7.0"
+  s.platform     = :ios, "9.0"
 
   #  When using multiple platforms
   # s.ios.deployment_target = "7.0"
@@ -91,9 +91,6 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  #-------------------------------1.0.7版本去掉 2018-02-05-----------------------
-  # s.source_files  = "MOFSPickerManagerDemo/MOFSPickerManager/**/*.{h,m}", "MOFSPickerManagerDemo/GDataXMLNode/**/*.{h,m}"
-  #-----------------------------------------------------------------------------
   s.source_files  = "LYChatUI/LYChatUI/**/*.{h,m}"
   s.exclude_files = "Classes/Exclude"
 
@@ -110,8 +107,7 @@ Pod::Spec.new do |s|
 
   # s.resource  = "icon.png"
   # s.resources = "Resources/*.png"
-  # s.resources = "MOFSPickerManagerDemo/MOFSPickerManager/**/*.{xml}", "MOFSPickerManagerDemo/MOFSPickerManager/**/*.{json}"
-
+  
   # s.preserve_paths = "FilesToSave", "MoreFilesToSave"
 
 
@@ -136,13 +132,6 @@ Pod::Spec.new do |s|
   #  where they will only apply to your library. If you depend on other Podspecs
   #  you can include multiple dependencies to ensure it works.
 
-  #-------------------------------1.0.7版本去掉 2018-02-05-----------------------
-  # s.requires_arc = false
-  # s.requires_arc = ["MOFSPickerManagerDemo/MOFSPickerManager/**/*.{h,m}"]
-  # s.module_name = "MOFSPickerManager"
-  #-----------------------------------------------------------------------------
-
-  # non_arc_files = 'MOFSPickerManagerDemo/GDataXMLNode/**/*.{h,m}'
 
   # s.exclude_files = non_arc_files
 
@@ -153,13 +142,8 @@ Pod::Spec.new do |s|
   # sp.requires_arc = false
 
   # end
-  # s.requires_arc = ['MOFSPickerManagerDemo/MOFSPickerManager/**/*.{h,m}']
-
+ 
   # s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2" }
-
-  #-------------------------------1.0.7版本去掉 2018-02-05-----------------------
-  #s.xcconfig = { "HEADER_SEARCH_PATHS" => "$(SDKROOT)/usr/include/libxml2", "OTHER_LINKER_FLAGS" => "-ObjC", "WEAK_REFERENCES_IN_MANUAL_RETAIN_RELEASE" => "Yes" }
-  #-----------------------------------------------------------------------------
 
   # s.dependency "GDataXML"
   # "ALLOW_NON-MODULAR_INCLUDES_IN_FRAMEWORK_MODULES" => "YES"

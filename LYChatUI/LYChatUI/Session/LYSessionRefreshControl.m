@@ -44,7 +44,7 @@
     _contentView = [UIView new];
     [self addSubview:_contentView];
     
-    _indicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleMedium];
+    _indicatorView = [[UIActivityIndicatorView alloc] init];
     _indicatorView.hidesWhenStopped = true;
     [_contentView addSubview:_indicatorView];
     
