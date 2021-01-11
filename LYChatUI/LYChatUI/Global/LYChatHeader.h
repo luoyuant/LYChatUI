@@ -5,6 +5,8 @@
 //  Created by luoyuan on 2021/1/8.
 //
 
+#import <Foundation/Foundation.h>
+
 #ifndef LYChatHeader_h
 #define LYChatHeader_h
 
