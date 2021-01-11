@@ -89,6 +89,13 @@
 }
 
 /**
+ * 添加消息
+ */
+- (void)addMessages:(NSArray<LYSessionMessage *> *)messages {
+    
+}
+
+/**
  * 滚动到底部
  */
 - (void)tableViewScrollToBottom {

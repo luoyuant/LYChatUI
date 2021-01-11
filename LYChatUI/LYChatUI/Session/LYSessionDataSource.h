@@ -22,6 +22,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)getLocalData;
 
+/**
+ * 添加消息
+ */
+- (void)addMessages:(NSArray<LYSessionMessage *> *)messages;
+
 @optional
 
 
