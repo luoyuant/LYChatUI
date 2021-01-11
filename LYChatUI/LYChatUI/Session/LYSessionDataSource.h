@@ -34,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong) NSMutableArray<LYSessionMessage *> *dataArray;
 
+/**
+ * 设置
+ */
 - (void)setup:(LYSessionViewController *)vc;
 
 @end
