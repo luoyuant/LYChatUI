@@ -17,7 +17,7 @@ Pod::Spec.new do |s|
 
   s.name         = "LYChatUI"
   s.version      = "1.0.0"
-  s.summary      = "ChatUI for iOS"
+  s.summary      = "Chat UI for iOS"
 
   # This description is used to generate tags and improve search results.
   #   * Think: What does it do? Why did you write it? What is the focus?
@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-    iOS 即时通讯UI
+    Chat UI for iOS(iOS 即时通讯UI)
                    DESC
 
   s.homepage     = "https://github.com/luoyuant/LYChatUI.git"
@@ -40,7 +40,7 @@ Pod::Spec.new do |s|
   #
 
   s.license      = "MIT"
-  # s.license      = { :type => "MIT", :file => "LICENSE" }
+  s.license      = { :type => "MIT", :file => "LICENSE" }
 
 
   # ――― Author Metadata  ――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -94,7 +94,7 @@ Pod::Spec.new do |s|
   s.source_files  = "LYChatUI/LYChatUI/**/*.{h,m}"
   s.exclude_files = "Classes/Exclude"
 
-  s.public_header_files = "LYChatUI/LYChatUI/LYChatConst.h"
+  s.public_header_files = "LYChatUI/LYChatUI/LYChatConst/LYChatConst.h"
   # s.prefix_header_contents = '#import "ApptentiveLog.h"', '#import "ApptentiveAssert.h"', '#import "ApptentiveSafeCollections.h"'
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

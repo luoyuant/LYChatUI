@@ -94,7 +94,9 @@
  * @param atIndex 插入下标
  */
 - (void)insertMessages:(NSArray<LYSessionMessage *> *)messages atIndex:(NSInteger)atIndex {
-    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        
+    });
 }
 
 /**
