@@ -1,5 +1,5 @@
 //
-//  LYChatGlobalColorConfig.h
+//  LYChatColorConfig.h
 //  LYChatUI
 //
 //  Created by luoyuan on 2021/1/5.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LYChatGlobalColorConfig : NSObject
+@interface LYChatColorConfig : NSObject
 
 /**
  * 时间戳文字颜色

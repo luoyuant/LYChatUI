@@ -6,7 +6,7 @@
 //
 
 #import "LYSessionTimestampCell.h"
-#import "LYChatGlobalConfig.h"
+#import "LYChatConfig.h"
 #import "LYSessionTimestampCellLayout.h"
 
 @implementation LYSessionTimestampCell
@@ -41,8 +41,6 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         _timestampLabel = [UILabel new];
-        _timestampLabel.font = [LYChatGlobalConfig shared].fontConfig.timestampFont;
-        _timestampLabel.textColor = [LYChatGlobalConfig shared].colorConfig.timestampTextColor;
         _timestampLabel.textAlignment = NSTextAlignmentCenter;
         [self.contentView addSubview:_timestampLabel];
         
@@ -74,6 +72,9 @@
  */
 - (void)refresh {
     _timestampLabel.text = _model.timestampText;
+    
+    _timestampLabel.font = _model.config.fontConfig.timestampFont;
+    _timestampLabel.textColor = _model.config.colorConfig.timestampTextColor;
 }
 
 @end

@@ -1,19 +1,19 @@
 //
-//  LYChatGlobalConfig.m
+//  LYChatConfig.m
 //  LYChatUI
 //
 //  Created by luoyuan on 2021/1/5.
 //
 
-#import "LYChatGlobalConfig.h"
+#import "LYChatConfig.h"
 
-@implementation LYChatGlobalConfig
+@implementation LYChatConfig
 
 + (instancetype)shared {
-    static LYChatGlobalConfig *instance = nil;
+    static LYChatConfig *instance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        instance = [[LYChatGlobalConfig alloc] init];
+        instance = [[LYChatConfig alloc] init];
     });
     return instance;
 }
@@ -23,9 +23,9 @@
 /**
  * 颜色
  */
-- (LYChatGlobalColorConfig *)colorConfig {
+- (LYChatColorConfig *)colorConfig {
     if (!_colorConfig) {
-        _colorConfig = [LYChatGlobalColorConfig new];
+        _colorConfig = [LYChatColorConfig new];
     }
     return _colorConfig;
 }
@@ -33,9 +33,9 @@
 /**
  * 字体
  */
-- (LYChatGlobalFontConfig *)fontConfig {
+- (LYChatFontConfig *)fontConfig {
     if (!_fontConfig) {
-        _fontConfig = [LYChatGlobalFontConfig new];
+        _fontConfig = [LYChatFontConfig new];
     }
     return _fontConfig;
 }

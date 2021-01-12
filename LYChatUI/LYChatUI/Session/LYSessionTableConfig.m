@@ -10,11 +10,13 @@
 #import "LYSessionTimestampMessage.h"
 #import "LYSessionCell.h"
 #import "LYSessionTimestampCell.h"
-#import "LYChatGlobalConfig.h"
+#import "LYChatConfig.h"
 
 @interface LYSessionTableConfig () <UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, weak) LYSessionDataSource *dataSource;
+
+@property (nonatomic, weak) LYChatConfig *config;
 
 @end
 
@@ -26,8 +28,8 @@
     if (!_refreshControl) {
         _refreshControl = [[LYSessionRefreshControl alloc] init];
         _refreshControl.titleLabel.text = @"加载中...";
-        _refreshControl.titleLabel.font = [LYChatGlobalConfig shared].fontConfig.refreshControlTitleFont;
-        _refreshControl.titleLabel.textColor = [LYChatGlobalConfig shared].colorConfig.refreshControlTitleColor;
+        _refreshControl.titleLabel.font = _config.fontConfig.refreshControlTitleFont;
+        _refreshControl.titleLabel.textColor = _config.colorConfig.refreshControlTitleColor;
     }
     return _refreshControl;
 }
@@ -40,6 +42,7 @@
     self.tableView.dataSource = self;
     
     self.dataSource = dataSource;
+    self.config = vc.sessionManager.config;
     
     self.tableView.lyChatRefreshControl = self.refreshControl;
     

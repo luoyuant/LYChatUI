@@ -6,7 +6,7 @@
 //
 
 #import "ViewController.h"
-#import "LYChatGlobalConfig.h"
+#import "LYChatConfig.h"
 #import "LYSessionViewController.h"
 
 @interface ViewController ()
@@ -58,7 +58,7 @@
 }
 
 - (void)tapAction {
-    [LYChatGlobalConfig shared].currentUser = [LYChatUserModel userWithUserId:@"hl456" nickname:@"" avatarImage:nil];
+    [LYChatConfig shared].currentUser = [LYChatUserModel userWithUserId:@"hl456" nickname:@"" avatarImage:nil];
     LYSessionViewController *vc = [LYSessionViewController new];
     vc.session = [LYSession sessionWithSessionId:@"" sessionType:LYSessionTypeGroup];
     vc.session.showNickname = true;

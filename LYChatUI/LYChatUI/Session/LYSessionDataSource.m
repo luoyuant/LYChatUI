@@ -8,7 +8,7 @@
 #import "LYSessionDataSource.h"
 #import "LYSessionViewController.h"
 #import "LYSessionTimestampMessage.h"
-#import "LYChatGlobalConfig.h"
+#import "LYChatConfig.h"
 
 @interface LYSessionDataSource ()
 
@@ -18,6 +18,8 @@
 @property (nonatomic, weak) LYSession *session;
 
 @property (nonatomic, weak) UITableView *tableView;
+
+@property (nonatomic, weak) LYChatConfig *config;
 
 @end
 
@@ -54,6 +56,7 @@
 - (void)setup:(LYSessionViewController *)vc {
     _session = vc.session;
     _tableView = vc.tableView;
+    _config = vc.sessionManager.config;
 }
 
 #pragma mark - LYSessionDataSourceProtocol
@@ -74,7 +77,7 @@
         }
         for (NSInteger i = orderMessages.count - 1; i >= 0; i--) {
             LYSessionMessage *message = orderMessages[i];
-            if (firstTimestamp > 0 && firstTimestamp - message.timestamp < [LYChatGlobalConfig shared].showTimestampWithTimeInterval) {
+            if (firstTimestamp > 0 && firstTimestamp - message.timestamp < self.config.showTimestampWithTimeInterval) {
                 if ([self.dataArray.firstObject isKindOfClass:[LYSessionTimestampMessage class]]) {
                     [self.dataArray removeObjectAtIndex:0];
                 }
@@ -84,6 +87,7 @@
             //添加时间戳
             firstTimestamp = message.timestamp;
             LYSessionTimestampMessage *timestampMessage = [LYSessionTimestampMessage new];
+            timestampMessage.config = message.config;
             timestampMessage.timestamp = message.timestamp;
             [self.dataArray addObject:timestampMessage];
             
@@ -98,8 +102,9 @@
 }
 
 /**
- * 添加消息
- * 不检查顺序
+ * 列表末尾添加消息
+ * @param messages 添加消息
+ * @param scrollToBottom 是否滚动到底部
  */
 - (void)appendMessages:(NSArray<LYSessionMessage *> *)messages scrollToBottom:(BOOL)scrollToBottom {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
@@ -115,8 +120,9 @@
         }
         for (NSInteger i = 0; i < messages.count; i++) {
             LYSessionMessage *message = messages[i];
-            if (message.timestamp - previousTimestamp >= [LYChatGlobalConfig shared].showTimestampWithTimeInterval) {
+            if (message.timestamp - previousTimestamp >= self.config.showTimestampWithTimeInterval) {
                 LYSessionTimestampMessage *timestampMessage = [LYSessionTimestampMessage new];
+                timestampMessage.config = message.config;
                 timestampMessage.timestamp = message.timestamp;
                 [self.dataArray addObject:timestampMessage];
                 previousTimestamp = message.timestamp;

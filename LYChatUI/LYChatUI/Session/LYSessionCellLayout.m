@@ -6,7 +6,7 @@
 //
 
 #import "LYSessionCellLayout.h"
-#import "LYChatGlobalConfig.h"
+#import "LYChatConfig.h"
 #import "LYSessionCell.h"
 #import "LYChatConst.h"
 
@@ -134,7 +134,7 @@
         CGFloat widthOffset = self.contentTriangleWidth + padding.left + padding.right;
         CGFloat minHeight = self.avatarSize.height;
         CGFloat maxWidth = self.contentMaxWidth - widthOffset;
-        CGRect rect = [model.contentText boundingRectWithSize:CGSizeMake(maxWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : [LYChatGlobalConfig shared].fontConfig.contentFont} context:nil];
+        CGRect rect = [model.contentText boundingRectWithSize:CGSizeMake(maxWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : model.config.fontConfig.contentFont} context:nil];
         CGFloat width = rect.size.width + widthOffset;
         CGFloat height = rect.size.height + padding.top + padding.bottom;
         contentSize = CGSizeMake(MIN(width, maxWidth), MAX(minHeight, height));
@@ -163,7 +163,7 @@
     if (!user) {
         LYDLog(@"user为NULL");
     }
-    BOOL isSelf = [user.userId isEqualToString:[LYChatGlobalConfig shared].currentUser.userId];
+    BOOL isSelf = [user.userId isEqualToString:[LYChatConfig shared].currentUser.userId];
     self.showNickname = session.sessionType != LYSessionTypeP2P && (session.showNickname && !isSelf);
     self.layoutType = isSelf ? LYSessionCellLayoutTypeRight : LYSessionCellLayoutTypeLeft;
 }

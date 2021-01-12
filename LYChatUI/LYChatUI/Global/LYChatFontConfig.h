@@ -1,5 +1,5 @@
 //
-//  LYChatGlobalFontConfig.h
+//  LYChatFontConfig.h
 //  LYChatUI
 //
 //  Created by luoyuan on 2021/1/6.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LYChatGlobalFontConfig : NSObject
+@interface LYChatFontConfig : NSObject
 
 /**
  * 时间戳字体

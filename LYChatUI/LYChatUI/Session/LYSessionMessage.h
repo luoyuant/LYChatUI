@@ -9,6 +9,7 @@
 #import "LYSession.h"
 #import "LYSessionCellLayout.h"
 #import "LYChatUserModel.h"
+#import "LYChatConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -47,6 +48,11 @@ typedef NS_ENUM(NSInteger, LYSessionMessageType) {
  * 布局
  */
 @property (nonatomic, strong) LYSessionCellLayout *layout;
+
+/**
+ * 设置
+ */
+@property (nonatomic, weak) LYChatConfig *config;
 
 /**
  * 时间戳(精确到毫秒)

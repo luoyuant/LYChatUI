@@ -1,5 +1,5 @@
 //
-//  LYChatGlobalConfig.h
+//  LYChatConfig.h
 //  LYChatUI
 //
 //  Created by luoyuan on 2021/1/5.
@@ -7,12 +7,12 @@
 
 #import <Foundation/Foundation.h>
 #import "LYChatUserModel.h"
-#import "LYChatGlobalColorConfig.h"
-#import "LYChatGlobalFontConfig.h"
+#import "LYChatColorConfig.h"
+#import "LYChatFontConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LYChatGlobalConfig : NSObject
+@interface LYChatConfig : NSObject
 
 + (instancetype)shared;
 
@@ -24,12 +24,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * 颜色
  */
-@property (nonatomic, strong) LYChatGlobalColorConfig *colorConfig;
+@property (nonatomic, strong) LYChatColorConfig *colorConfig;
 
 /**
  * 字体
  */
-@property (nonatomic, strong) LYChatGlobalFontConfig *fontConfig;
+@property (nonatomic, strong) LYChatFontConfig *fontConfig;
 
 /**
  * 相隔多久显示一条时间戳(精确到毫秒)

@@ -6,7 +6,7 @@
 //
 
 #import "LYSessionContentView.h"
-#import "LYChatGlobalConfig.h"
+#import "LYChatConfig.h"
 
 @interface LYSessionContentView ()
 
@@ -34,8 +34,6 @@
         [self addSubview:_contentView];
         
         _contentLabel = [UILabel new];
-        _contentLabel.font = [LYChatGlobalConfig shared].fontConfig.contentFont;
-        _contentLabel.textColor = [LYChatGlobalConfig shared].colorConfig.contentTextColor;
         _contentLabel.numberOfLines = 0;
         _contentLabel.adjustsFontSizeToFitWidth = true;
         [_contentView addSubview:_contentLabel];
@@ -174,6 +172,9 @@
  */
 - (void)refresh {
     _contentLabel.text = _model.contentText;
+    
+    _contentLabel.font = _model.config.fontConfig.contentFont;
+    _contentLabel.textColor = _model.config.colorConfig.contentTextColor;
 }
 
 @end

@@ -6,7 +6,7 @@
 //
 
 #import "LYSessionMessage.h"
-#import "LYChatGlobalConfig.h"
+#import "LYChatConfig.h"
 
 @implementation LYSessionMessage
 

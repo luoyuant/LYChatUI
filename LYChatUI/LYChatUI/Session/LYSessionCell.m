@@ -6,7 +6,7 @@
 //
 
 #import "LYSessionCell.h"
-#import "LYChatGlobalConfig.h"
+#import "LYChatConfig.h"
 
 @interface LYSessionCell ()
 
@@ -56,8 +56,6 @@
         [self.contentView addSubview:_avatarImageView];
         
         _nicknameLabel = [UILabel new];
-        _nicknameLabel.font = [LYChatGlobalConfig shared].fontConfig.nicknameFont;
-        _nicknameLabel.textColor = [LYChatGlobalConfig shared].colorConfig.nicknameTextColor;
         _nicknameLabel.hidden = true;
         [self.contentView addSubview:_nicknameLabel];
         
@@ -176,7 +174,7 @@
     CGFloat x = onLeft ? CGRectGetMaxX(self.avatarImageView.frame) + margin.left : self.avatarImageView.frame.origin.x - margin.left - size.width;
     CGFloat y = self.layout.showNickname ? (CGRectGetMaxY(_nicknameLabel.frame) + 2) : margin.top;
     _sessionContentView.frame = CGRectMake(x, y, size.width, size.height);
-    _sessionContentView.backgroundColor = onLeft ? [LYChatGlobalConfig shared].colorConfig.leftSessionContentColor : [LYChatGlobalConfig shared].colorConfig.rightSessionContentColor;
+    _sessionContentView.backgroundColor = onLeft ? _model.config.colorConfig.leftSessionContentColor : _model.config.colorConfig.rightSessionContentColor;
 }
 
 #pragma mark - Refresh
@@ -190,6 +188,9 @@
     _nicknameLabel.textAlignment = onLeft ? NSTextAlignmentLeft : NSTextAlignmentRight;
     
     _avatarImageView.image = _model.user.avatarImage;
+    
+    _nicknameLabel.font = _model.config.fontConfig.nicknameFont;
+    _nicknameLabel.textColor = _model.config.colorConfig.nicknameTextColor;
 }
 
 

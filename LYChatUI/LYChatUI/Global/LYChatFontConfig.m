@@ -1,13 +1,13 @@
 //
-//  LYChatGlobalFontConfig.m
+//  LYChatFontConfig.m
 //  LYChatUI
 //
 //  Created by luoyuan on 2021/1/6.
 //
 
-#import "LYChatGlobalFontConfig.h"
+#import "LYChatFontConfig.h"
 
-@implementation LYChatGlobalFontConfig
+@implementation LYChatFontConfig
 
 #pragma mark - Getter
 

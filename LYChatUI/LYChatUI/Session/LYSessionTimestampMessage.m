@@ -7,7 +7,7 @@
 
 #import "LYSessionTimestampMessage.h"
 #import "LYSessionTimestampCellLayout.h"
-#import "LYChatGlobalConfig.h"
+#import "LYChatConfig.h"
 
 @implementation LYSessionTimestampMessage
 
@@ -24,9 +24,9 @@
 - (void)didGetTime {
     [super didGetTime];
     if (self.timestamp > 0) {
-        self.timestampText = [[LYChatGlobalConfig shared] sessionTimeTextWithTimestamp:self.timestamp];
+        self.timestampText = [self.config sessionTimeTextWithTimestamp:self.timestamp];
     } else {
-        self.timestampText = [[LYChatGlobalConfig shared] sessionTimeTextWithDate:self.time];
+        self.timestampText = [self.config sessionTimeTextWithDate:self.time];
     }
 }
 

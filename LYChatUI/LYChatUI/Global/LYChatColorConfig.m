@@ -1,13 +1,13 @@
 //
-//  LYChatGlobalColorConfig.m
+//  LYChatColorConfig.m
 //  LYChatUI
 //
 //  Created by luoyuan on 2021/1/5.
 //
 
-#import "LYChatGlobalColorConfig.h"
+#import "LYChatColorConfig.h"
 
-@implementation LYChatGlobalColorConfig
+@implementation LYChatColorConfig
 
 #pragma mark - Getter
 

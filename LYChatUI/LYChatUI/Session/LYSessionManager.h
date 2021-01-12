@@ -6,6 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LYChatConfig.h"
 #import "LYSessionTableConfig.h"
 #import "LYSessionDataSource.h"
 
@@ -14,6 +15,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface LYSessionManager : NSObject
+
+/**
+ * 设置
+ */
+@property (nonatomic, strong) LYChatConfig *config;
 
 /**
  * tableView管理
@@ -25,6 +31,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong) LYSessionDataSource *dataSource;
 
+/**
+ * 设置
+ */
 - (void)setup:(LYSessionViewController *)vc;
 
 @end

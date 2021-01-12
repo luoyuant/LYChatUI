@@ -6,7 +6,7 @@
 //
 
 #import "LYSessionViewController.h"
-#import "LYChatGlobalConfig.h"
+#import "LYChatConfig.h"
 #import "LYChatConst.h"
 
 @interface LYSessionViewController ()
@@ -32,7 +32,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.view.backgroundColor = [LYChatGlobalConfig shared].colorConfig.sessionBackgroundColor;
+    self.view.backgroundColor = self.sessionManager.config.colorConfig.sessionBackgroundColor;
     
     NSAssert(_session, @"会话对象为NULL");
     
@@ -51,6 +51,7 @@
         for (NSInteger i = 0; i < 10; i++) {
             LYSessionMessage *model = [LYSessionMessage new];
             model.session = self.session;
+            model.config = self.sessionManager.config;
             model.timestamp = timestamp;
             model.user = [LYChatUserModel userWithUserId:@"hl123" nickname:@"神尾观铃" avatarImage:avatarImage];
             model.contentText = @"庭院深深深几许？杨柳堆烟，帘幕无重数，玉勒雕鞍游冶处，楼高不见章台路。";
@@ -61,6 +62,7 @@
         
         LYSessionMessage *model = [LYSessionMessage new];
         model.session = self.session;
+        model.config = self.sessionManager.config;
         model.user = [LYChatUserModel userWithUserId:@"hl456" nickname:@"国崎往人" avatarImage:avatarImage];
         model.contentText = @"庭院深深深几许？杨柳堆烟，帘幕无重数，玉勒雕鞍游冶处，楼高不见章台路。";
         [messageArray addObject:model];

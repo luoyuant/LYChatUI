@@ -12,6 +12,19 @@
 
 #pragma mark - Getter
 
+/**
+ * 设置
+ */
+- (LYChatConfig *)config {
+    if (!_config) {
+        _config = [LYChatConfig shared];
+    }
+    return _config;
+}
+
+/**
+ * tableView管理
+ */
 - (LYSessionTableConfig *)tableConfig {
     if (!_tableConfig) {
         _tableConfig = [LYSessionTableConfig new];
@@ -19,6 +32,9 @@
     return _tableConfig;
 }
 
+/**
+ * 数据源
+ */
 - (LYSessionDataSource *)dataSource {
     if (!_dataSource) {
         _dataSource = [LYSessionDataSource new];
