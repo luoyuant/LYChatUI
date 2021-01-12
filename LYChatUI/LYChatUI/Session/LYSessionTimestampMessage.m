@@ -22,6 +22,7 @@
 }
 
 - (void)didGetTime {
+    [super didGetTime];
     if (self.timestamp > 0) {
         self.timestampText = [[LYChatGlobalConfig shared] sessionTimeTextWithTimestamp:self.timestamp];
     } else {

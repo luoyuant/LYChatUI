@@ -94,7 +94,7 @@ Pod::Spec.new do |s|
   s.source_files  = "LYChatUI/LYChatUI/**/*.{h,m}"
   s.exclude_files = "Classes/Exclude"
 
-  s.public_header_files = "LYChatUI/LYChatUI/LYChatConst/LYChatConst.h"
+  s.public_header_files = "LYChatUI/LYChatUI/Global/LYChatConst.h"
   # s.prefix_header_contents = '#import "ApptentiveLog.h"', '#import "ApptentiveAssert.h"', '#import "ApptentiveSafeCollections.h"'
 
   # ――― Resources ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #

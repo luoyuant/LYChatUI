@@ -18,28 +18,19 @@ NS_ASSUME_NONNULL_BEGIN
 @required
 
 /**
- * 获取本地数据
+ * 列表最前插入消息
+ * @param messages 插入消息，消息顺序为时间戳从小到大
+ * @param checkOrder 是否对将要插入的消息排序，如果已确认时间戳是从小到大则不必要在排序
  */
-- (void)getLocalData;
+- (void)insertMessages:(NSArray<LYSessionMessage *> *)messages checkOrder:(BOOL)checkOrder;
 
 /**
- * 插入消息
- * 不检查顺序
- * @param atIndex 插入下标
+ * 列表末尾添加消息
+ * @param messages 添加消息
+ * @param scrollToBottom 是否滚动到底部
  */
-- (void)insertMessages:(NSArray<LYSessionMessage *> *)messages atIndex:(NSInteger)atIndex;
+- (void)appendMessages:(NSArray<LYSessionMessage *> *)messages scrollToBottom:(BOOL)scrollToBottom;
 
-/**
- * 添加消息
- * 不检查顺序
- */
-- (void)addMessages:(NSArray<LYSessionMessage *> *)messages;
-
-/**
- * 添加消息
- * @param checkOrder 是否检查顺序
- */
-- (void)addMessages:(NSArray<LYSessionMessage *> *)messages checkOrder:(BOOL)checkOrder;
 
 @optional
 
@@ -49,14 +40,24 @@ NS_ASSUME_NONNULL_BEGIN
 @interface LYSessionDataSource : NSObject <LYSessionDataSourceProtocol>
 
 /**
- * 数据源
+ * 数据源，包含时间戳数据
  */
 @property (nonatomic, strong) NSMutableArray<LYSessionMessage *> *dataArray;
+
+/**
+ * 消息列表，不包含时间戳数据
+ */
+@property (nonatomic, strong) NSMutableArray<LYSessionMessage *> *messageArray;
 
 /**
  * 设置
  */
 - (void)setup:(LYSessionViewController *)vc;
+
+/**
+ * 滚动到底部
+ */
+- (void)tableViewScrollToBottom;
 
 @end
 

@@ -19,6 +19,7 @@
 
 - (void)setTime:(NSDate *)time {
     _time = time;
+    _timestamp = [_time timeIntervalSince1970] * 1000.0;
     [self didGetTime];
 }
 

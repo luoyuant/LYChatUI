@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LYSessionViewController : UIViewController
+@interface LYSessionViewController : UIViewController <LYSessionTableConfigDelegate>
 
 /**
  * 会话对象

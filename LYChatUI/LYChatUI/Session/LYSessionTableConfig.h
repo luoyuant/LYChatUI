@@ -13,12 +13,28 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol LYSessionTableConfigDelegate <NSObject>
+
+@optional
+
+/**
+ * 下拉加载更多
+ */
+- (void)didPullUp;
+
+@end
+
 @interface LYSessionTableConfig : NSObject
 
 @property (nonatomic, strong) LYSessionRefreshControl *refreshControl;
 
 @property (nonatomic, weak) UITableView *tableView;
 
+@property (nonatomic, weak) id<LYSessionTableConfigDelegate> delegate;
+
+/**
+ * 设置
+ */
 - (void)setup:(LYSessionViewController *)vc dataSourceManager:(LYSessionDataSource *)dataSource;
 
 @end

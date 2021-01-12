@@ -96,9 +96,11 @@
 #pragma mark - UIScrollViewDelegate
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-//    if (!self.refreshControl.refreshing && scrollView.contentOffset.y <= -self.tableView.contentInset.top) {
-//        [self.refreshControl beginRefreshing];
-//    }
+    if (!self.refreshControl.refreshing && scrollView.contentOffset.y <= -self.tableView.contentInset.top) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(didPullUp)]) {
+            [self.delegate didPullUp];
+        }
+    }
 }
 
 - (void)scrollViewDidChangeAdjustedContentInset:(UIScrollView *)scrollView {
