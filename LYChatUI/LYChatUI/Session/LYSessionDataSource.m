@@ -89,9 +89,9 @@
             LYSessionTimestampMessage *timestampMessage = [LYSessionTimestampMessage new];
             timestampMessage.config = message.config;
             timestampMessage.timestamp = message.timestamp;
-            [self.dataArray addObject:timestampMessage];
+            [self.dataArray insertObject:timestampMessage atIndex:0];
             
-            [self.messageArray addObject:message];
+            [self.messageArray insertObject:message atIndex:0];
         }
         
         dispatch_async(dispatch_get_main_queue(), ^{
