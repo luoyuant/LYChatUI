@@ -14,6 +14,8 @@
 
 @interface LYSessionTableConfig () <UITableViewDelegate, UITableViewDataSource>
 
+@property (nonatomic, weak) LYSessionViewController *sessionViewController;
+
 @property (nonatomic, weak) LYSessionDataSource *dataSource;
 
 @property (nonatomic, weak) LYChatConfig *config;
@@ -41,6 +43,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     
+    self.sessionViewController = vc;
     self.dataSource = dataSource;
     self.config = vc.sessionManager.config;
     
@@ -76,19 +79,22 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < _dataSource.dataArray.count) {
-        LYSessionMessage *model = _dataSource.dataArray[indexPath.row];
-        NSString *identifier = NSStringFromClass(model.layout.cellClass);
+        LYSessionMessage *message = _dataSource.dataArray[indexPath.row];
+        NSString *identifier = NSStringFromClass(message.layout.cellClass);
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         if (!cell) {
-            [tableView registerClass:model.layout.cellClass forCellReuseIdentifier:identifier];
+            [tableView registerClass:message.layout.cellClass forCellReuseIdentifier:identifier];
             cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         }
         cell.contentView.backgroundColor = tableView.backgroundColor;
         
         if ([cell isKindOfClass:[LYSessionCell class]]) {
-            ((LYSessionCell *)cell).model = model;
-        } else if ([cell isKindOfClass:[LYSessionTimestampCell class]] && [model isKindOfClass:[LYSessionTimestampMessage class]]) {
-            ((LYSessionTimestampCell *)cell).model = (LYSessionTimestampMessage *)model;
+            LYSessionCell *sessionCell = (LYSessionCell *)cell;
+            sessionCell.delegate = self.sessionViewController;
+            sessionCell.message = message;
+        } else if ([cell isKindOfClass:[LYSessionTimestampCell class]] && [message isKindOfClass:[LYSessionTimestampMessage class]]) {
+            LYSessionTimestampCell *timestampCell = (LYSessionTimestampCell *)cell;
+            timestampCell.model = (LYSessionTimestampMessage *)message;
         }
         
         return cell;

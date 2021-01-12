@@ -7,6 +7,7 @@
 
 #import "LYSessionCell.h"
 #import "LYChatConfig.h"
+#import "LYChatConst.h"
 
 @interface LYSessionCell ()
 
@@ -23,10 +24,10 @@
 
 #pragma mark - Setter
 
-- (void)setModel:(LYSessionMessage *)model {
-    BOOL shouldUpdate = _model != model;
-    _model = model;
-    _sessionContentView.model = model;
+- (void)setMessage:(LYSessionMessage *)message {
+    BOOL shouldUpdate = _message != message;
+    _message = message;
+    _sessionContentView.model = message;
     if (shouldUpdate) {
         [self refresh];
         [self setNeedsLayout];
@@ -36,8 +37,8 @@
 #pragma mark - Getter
 
 - (LYSessionCellLayout *)layout {
-    if ([_model.layout isKindOfClass:[LYSessionCellLayout class]]) {
-        _layout = _model.layout;
+    if ([_message.layout isKindOfClass:[LYSessionCellLayout class]]) {
+        _layout = _message.layout;
     }
     return _layout;
 }
@@ -169,12 +170,12 @@
     LYSessionCellLayoutType layoutType = self.layout.layoutType;
     
     BOOL onLeft = layoutType == LYSessionCellLayoutTypeLeft;
-    UIEdgeInsets margin = self.model.layout.contentMargin;
-    CGSize size = [self.model.layout contentSizeForCellWidth:self.contentView.bounds.size.width model:_model];
+    UIEdgeInsets margin = self.message.layout.contentMargin;
+    CGSize size = [self.message.layout contentSizeForCellWidth:self.contentView.bounds.size.width model:_message];
     CGFloat x = onLeft ? CGRectGetMaxX(self.avatarImageView.frame) + margin.left : self.avatarImageView.frame.origin.x - margin.left - size.width;
     CGFloat y = self.layout.showNickname ? (CGRectGetMaxY(_nicknameLabel.frame) + 2) : margin.top;
     _sessionContentView.frame = CGRectMake(x, y, size.width, size.height);
-    _sessionContentView.backgroundColor = onLeft ? _model.config.colorConfig.leftSessionContentColor : _model.config.colorConfig.rightSessionContentColor;
+    _sessionContentView.backgroundColor = onLeft ? _message.config.colorConfig.leftSessionContentColor : _message.config.colorConfig.rightSessionContentColor;
 }
 
 #pragma mark - Refresh
@@ -184,13 +185,16 @@
  */
 - (void)refresh {
     BOOL onLeft = self.layout.layoutType == LYSessionCellLayoutTypeLeft;
-    _nicknameLabel.text = _model.user.nickname;
+    _nicknameLabel.text = _message.user.nickname;
     _nicknameLabel.textAlignment = onLeft ? NSTextAlignmentLeft : NSTextAlignmentRight;
     
-    _avatarImageView.image = _model.user.avatarImage;
+    _nicknameLabel.font = _message.config.fontConfig.nicknameFont;
+    _nicknameLabel.textColor = _message.config.colorConfig.nicknameTextColor;
     
-    _nicknameLabel.font = _model.config.fontConfig.nicknameFont;
-    _nicknameLabel.textColor = _model.config.colorConfig.nicknameTextColor;
+    if (self.delegate && [self.delegate respondsToSelector:@selector(avatarImageView:imageForMessage:)]) {
+        [self.delegate avatarImageView:_avatarImageView imageForMessage:_message];
+    }
+    
 }
 
 

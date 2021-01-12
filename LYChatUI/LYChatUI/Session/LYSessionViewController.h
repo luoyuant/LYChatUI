@@ -8,10 +8,11 @@
 #import <UIKit/UIKit.h>
 #import "LYSession.h"
 #import "LYSessionManager.h"
+#import "LYSessionCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LYSessionViewController : UIViewController <LYSessionTableConfigDelegate>
+@interface LYSessionViewController : UIViewController <LYSessionTableConfigDelegate, LYSessionCellDelegate>
 
 /**
  * 会话对象

@@ -103,6 +103,16 @@
     
 }
 
+#pragma mark - LYSessionCellDelegate
+
+- (void)avatarImageView:(UIImageView *)avatarImageView imageForMessage:(LYSessionMessage *)message {
+    if (!message || !avatarImageView) {
+        LYDLog(@"xxx");
+    }
+//    LYDLog(@"%@", message.user.userId);
+    avatarImageView.image = message.user.avatarImage;
+}
+
 #pragma mark - Action
 
 - (void)onTapTableView:(UITapGestureRecognizer *)tapGestureRecognizer {

@@ -11,6 +11,17 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol LYSessionCellDelegate <NSObject>
+
+@required
+
+/**
+ * 头像获取
+ */
+- (void)avatarImageView:(UIImageView *)avatarImageView imageForMessage:(LYSessionMessage *)message;
+
+@end
+
 @interface LYSessionCell : UITableViewCell
 
 /**
@@ -34,9 +45,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) LYSessionContentView *sessionContentView;
 
 /**
- * model
+ * 消息
  */
-@property (nonatomic, strong) LYSessionMessage *model;
+@property (nonatomic, strong) LYSessionMessage *message;
+
+
+@property (nonatomic, weak) id<LYSessionCellDelegate> delegate;
 
 /**
  * 更新布局
