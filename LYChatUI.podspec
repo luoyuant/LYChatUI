@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "LYChatUI"
-  s.version      = "1.0.1"
+  s.version      = "1.0.2"
   s.summary      = "Chat UI for iOS"
 
   # This description is used to generate tags and improve search results.
@@ -93,7 +93,7 @@ Pod::Spec.new do |s|
 
   s.source_files  = "LYChatUI/LYChatUI/**/*.{h,m}"
   s.exclude_files = "Classes/Exclude"
-  s.prefix_header_contents = '#import "LYChatConst.h"'
+  # s.prefix_header_contents = '#import "LYChatConst.h"'
 
   # s.public_header_files = "LYChatUI/LYChatUI/**/*.{h}"
   # s.prefix_header_contents = '#import "ApptentiveLog.h"', '#import "ApptentiveAssert.h"', '#import "ApptentiveSafeCollections.h"'
