@@ -108,7 +108,7 @@
     self.isRefreshing = true;
     self.hidden = false;
     [self.indicatorView startAnimating];
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView performWithoutAnimation:^{
         CGFloat topOffset = self.scrollViewOriginalInset.top + self.bounds.size.height;
         UIEdgeInsets insets = self.scrollView.contentInset;
         insets.top = topOffset;
@@ -116,9 +116,8 @@
             insets.top -= (self.scrollView.adjustedContentInset.top - self.scrollView.contentInset.top);
         }
         self.scrollView.contentInset = insets;
+        self.scrollView.contentOffset = CGPointMake(0, -insets.top);
         [self setNeedsLayout];
-    } completion:^(BOOL finished) {
-        
     }];
 }
 
