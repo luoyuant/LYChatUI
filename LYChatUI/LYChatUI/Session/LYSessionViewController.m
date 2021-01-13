@@ -86,7 +86,7 @@
 //
 //        NSMutableArray *messageArray = [NSMutableArray array];
 //
-//        for (NSInteger i = 0; i < 10; i++) {
+//        for (NSInteger i = 0; i < 1; i++) {
 //            LYSessionMessage *model = [LYSessionMessage new];
 //            model.session = self.session;
 //            model.config = self.sessionManager.config;
@@ -95,18 +95,19 @@
 //            model.contentText = @"庭院深深深几许？杨柳堆烟，帘幕无重数，玉勒雕鞍游冶处，楼高不见章台路。";
 //            [messageArray addObject:model];
 //
-//            timestamp += 60 * 1000 + 20;
+//            timestamp += 50 * 1000;
 //        }
 //
 //        LYSessionMessage *model = [LYSessionMessage new];
 //        model.session = self.session;
 //        model.config = self.sessionManager.config;
+//        model.timestamp = timestamp;
 //        model.user = [LYChatUserModel userWithUserId:@"hl456" nickname:@"国崎往人" avatarImage:avatarImage];
 //        model.contentText = @"庭院深深深几许？杨柳堆烟，帘幕无重数，玉勒雕鞍游冶处，楼高不见章台路。";
 //        [messageArray addObject:model];
 //
 //        if (self.sessionManager.dataSource.dataArray.count > 0) {
-//            [self.sessionManager.dataSource insertMessages:messageArray checkOrder:false];
+//            [self.sessionManager.dataSource insertMessages:messageArray checkOrder:true];
 //        } else {
 //            [self.sessionManager.dataSource appendMessages:messageArray scrollToBottom:true];
 //        }

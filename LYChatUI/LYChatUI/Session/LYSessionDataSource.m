@@ -9,6 +9,7 @@
 #import "LYSessionViewController.h"
 #import "LYSessionTimestampMessage.h"
 #import "LYChatConfig.h"
+#import "LYChatConst.h"
 
 @interface LYSessionDataSource ()
 
@@ -68,12 +69,11 @@
  */
 - (void)insertMessages:(NSArray<LYSessionMessage *> *)messages checkOrder:(BOOL)checkOrder {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSInteger oldCellCount = self.dataArray.count;
         NSTimeInterval firstTimestamp = self.messageArray.firstObject.timestamp;
         NSArray<LYSessionMessage *> *orderMessages = messages;
         if (checkOrder) {
             orderMessages = [messages sortedArrayUsingComparator:^NSComparisonResult(LYSessionMessage * _Nonnull obj1, LYSessionMessage * _Nonnull obj2) {
-                return obj1.timestamp < obj2.timestamp ? NSOrderedDescending : NSOrderedAscending;
+                return obj1.timestamp < obj2.timestamp ? NSOrderedAscending : NSOrderedDescending;
             }];
         }
         for (NSInteger i = orderMessages.count - 1; i >= 0; i--) {
@@ -82,11 +82,13 @@
                 if ([self.dataArray.firstObject isKindOfClass:[LYSessionTimestampMessage class]]) {
                     [self.dataArray removeObjectAtIndex:0];
                 }
+            } else {
+                firstTimestamp = message.timestamp;
             }
             [self.dataArray insertObject:message atIndex:0];
             
             //添加时间戳
-            firstTimestamp = message.timestamp;
+            
             LYSessionTimestampMessage *timestampMessage = [LYSessionTimestampMessage new];
             timestampMessage.config = message.config;
             timestampMessage.timestamp = message.timestamp;
@@ -100,13 +102,11 @@
             
             [self.tableView reloadData];
             @try {
-                if (oldCellCount > 0) {
-                    [UIView performWithoutAnimation:^{
-                        self.tableView.contentOffset = CGPointMake(0, self.tableView.contentSize.height - positionToBottom);
-                    }];
-                }
+                [UIView performWithoutAnimation:^{
+                    self.tableView.contentOffset = CGPointMake(0, self.tableView.contentSize.height - positionToBottom);
+                }];
             } @catch (NSException *exception) {
-
+                LYDLog(@"异常:%@", exception);
             } @finally {
 
             }
