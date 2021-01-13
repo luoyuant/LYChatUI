@@ -95,16 +95,20 @@
             [self.messageArray insertObject:message atIndex:0];
         }
         
-        NSInteger cellCount = self.dataArray.count;
-        NSInteger len = cellCount - oldCellCount;
         dispatch_async(dispatch_get_main_queue(), ^{
+            CGFloat positionToBottom = self.tableView.contentSize.height - self.tableView.contentOffset.y;
+            
             [self.tableView reloadData];
             @try {
-                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:len - 1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:false];
+                if (oldCellCount > 0) {
+                    [UIView performWithoutAnimation:^{
+                        self.tableView.contentOffset = CGPointMake(0, self.tableView.contentSize.height - positionToBottom);
+                    }];
+                }
             } @catch (NSException *exception) {
-                
+
             } @finally {
-                
+
             }
         });
         
@@ -170,5 +174,6 @@
         }
     });
 }
+
 
 @end

@@ -72,7 +72,8 @@
 #pragma mark - LYSessionTableConfigDelegate
 
 - (void)didPullUp {
-    
+//    [self.sessionManager.tableConfig.refreshControl beginRefreshing];
+//    [self getData];
 }
 
 #pragma mark - Get data
@@ -115,10 +116,6 @@
 #pragma mark - LYSessionCellDelegate
 
 - (void)avatarImageView:(UIImageView *)avatarImageView imageForMessage:(LYSessionMessage *)message {
-    if (!message || !avatarImageView) {
-        LYDLog(@"xxx");
-    }
-//    LYDLog(@"%@", message.user.userId);
     avatarImageView.image = message.user.avatarImage;
 }
 
