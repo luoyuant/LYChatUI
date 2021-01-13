@@ -57,7 +57,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * 滚动到底部
  */
-- (void)tableViewScrollToBottom;
+- (void)tableViewScrollToBottom:(BOOL)animated;
 
 @end
 

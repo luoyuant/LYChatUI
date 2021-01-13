@@ -68,11 +68,12 @@
  */
 - (void)insertMessages:(NSArray<LYSessionMessage *> *)messages checkOrder:(BOOL)checkOrder {
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSInteger oldCellCount = self.dataArray.count;
         NSTimeInterval firstTimestamp = self.messageArray.firstObject.timestamp;
         NSArray<LYSessionMessage *> *orderMessages = messages;
         if (checkOrder) {
             orderMessages = [messages sortedArrayUsingComparator:^NSComparisonResult(LYSessionMessage * _Nonnull obj1, LYSessionMessage * _Nonnull obj2) {
-                return obj1.timestamp < obj2.timestamp ? NSOrderedAscending : NSOrderedDescending;
+                return obj1.timestamp < obj2.timestamp ? NSOrderedDescending : NSOrderedAscending;
             }];
         }
         for (NSInteger i = orderMessages.count - 1; i >= 0; i--) {
@@ -94,8 +95,17 @@
             [self.messageArray insertObject:message atIndex:0];
         }
         
+        NSInteger cellCount = self.dataArray.count;
+        NSInteger len = cellCount - oldCellCount;
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
+            @try {
+                [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:len - 1 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:false];
+            } @catch (NSException *exception) {
+                
+            } @finally {
+                
+            }
         });
         
     });
@@ -133,7 +143,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
             if (scrollToBottom) {
-                [self tableViewScrollToBottom];
+                [self tableViewScrollToBottom:false];
             }
         });
     });
@@ -144,12 +154,19 @@
 /**
  * 滚动到底部
  */
-- (void)tableViewScrollToBottom {
+- (void)tableViewScrollToBottom:(BOOL)animated {
     dispatch_async(dispatch_get_main_queue(), ^{
         NSInteger row = [self.tableView numberOfRowsInSection:0] - 1;
         if (row > 0) {
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:false];
+            @try {
+                [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:animated];
+            } @catch (NSException *exception) {
+                
+            } @finally {
+                
+            }
+            
         }
     });
 }

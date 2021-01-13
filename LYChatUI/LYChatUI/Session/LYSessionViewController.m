@@ -41,35 +41,7 @@
     [self.sessionManager setup:self];
     self.sessionManager.tableConfig.delegate = self;
         
-//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//        UIImage *avatarImage = [UIImage imageNamed:@"avatar"];
-//
-//        NSTimeInterval timestamp = 1619985025000;
-//
-//        NSMutableArray *messageArray = [NSMutableArray array];
-//
-//        for (NSInteger i = 0; i < 10; i++) {
-//            LYSessionMessage *model = [LYSessionMessage new];
-//            model.session = self.session;
-//            model.config = self.sessionManager.config;
-//            model.timestamp = timestamp;
-//            model.user = [LYChatUserModel userWithUserId:@"hl123" nickname:@"神尾观铃" avatarImage:avatarImage];
-//            model.contentText = @"庭院深深深几许？杨柳堆烟，帘幕无重数，玉勒雕鞍游冶处，楼高不见章台路。";
-//            [messageArray addObject:model];
-//
-//            timestamp += 60 * 1000 + 20;
-//        }
-//
-//        LYSessionMessage *model = [LYSessionMessage new];
-//        model.session = self.session;
-//        model.config = self.sessionManager.config;
-//        model.user = [LYChatUserModel userWithUserId:@"hl456" nickname:@"国崎往人" avatarImage:avatarImage];
-//        model.contentText = @"庭院深深深几许？杨柳堆烟，帘幕无重数，玉勒雕鞍游冶处，楼高不见章台路。";
-//        [messageArray addObject:model];
-//
-//        [self.sessionManager.dataSource appendMessages:messageArray scrollToBottom:true];
-//
-//    });
+//    [self getData];
     
 }
 
@@ -101,6 +73,43 @@
 
 - (void)didPullUp {
     
+}
+
+#pragma mark - Get data
+
+- (void)getData {
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//        UIImage *avatarImage = [UIImage imageNamed:@"avatar"];
+//
+//        NSTimeInterval timestamp = 1619985025000;
+//
+//        NSMutableArray *messageArray = [NSMutableArray array];
+//
+//        for (NSInteger i = 0; i < 10; i++) {
+//            LYSessionMessage *model = [LYSessionMessage new];
+//            model.session = self.session;
+//            model.config = self.sessionManager.config;
+//            model.timestamp = timestamp;
+//            model.user = [LYChatUserModel userWithUserId:@"hl123" nickname:@"神尾观铃" avatarImage:avatarImage];
+//            model.contentText = @"庭院深深深几许？杨柳堆烟，帘幕无重数，玉勒雕鞍游冶处，楼高不见章台路。";
+//            [messageArray addObject:model];
+//
+//            timestamp += 60 * 1000 + 20;
+//        }
+//
+//        LYSessionMessage *model = [LYSessionMessage new];
+//        model.session = self.session;
+//        model.config = self.sessionManager.config;
+//        model.user = [LYChatUserModel userWithUserId:@"hl456" nickname:@"国崎往人" avatarImage:avatarImage];
+//        model.contentText = @"庭院深深深几许？杨柳堆烟，帘幕无重数，玉勒雕鞍游冶处，楼高不见章台路。";
+//        [messageArray addObject:model];
+//
+//        if (self.sessionManager.dataSource.dataArray.count > 0) {
+//            [self.sessionManager.dataSource insertMessages:messageArray checkOrder:false];
+//        } else {
+//            [self.sessionManager.dataSource appendMessages:messageArray scrollToBottom:true];
+//        }
+//    });
 }
 
 #pragma mark - LYSessionCellDelegate
