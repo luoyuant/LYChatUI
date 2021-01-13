@@ -125,9 +125,8 @@
     if (!self.isRefreshing) {
         return;
     }
-    [UIView animateWithDuration:0.3 animations:^{
+    [UIView performWithoutAnimation:^{
         self.scrollView.contentInset = self.scrollViewOriginalInset;
-    } completion:^(BOOL finished) {
         self.isRefreshing = false;
         self.hidden = true;
         [self.indicatorView stopAnimating];
