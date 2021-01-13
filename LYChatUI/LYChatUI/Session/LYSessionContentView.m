@@ -22,6 +22,7 @@
     if (shouldUpdate) {
         [self updateContentMask];
         [self refresh];
+        [self setNeedsLayout];
     }
 }
 

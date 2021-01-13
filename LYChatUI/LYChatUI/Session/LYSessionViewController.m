@@ -71,7 +71,7 @@
 
 #pragma mark - LYSessionTableConfigDelegate
 
-- (void)didPullUp {
+- (void)didScrollToTop:(UIScrollView *)scrollView {
 //    [self.sessionManager.tableConfig.refreshControl beginRefreshing];
 //    [self getData];
 }
@@ -96,16 +96,21 @@
 //            [messageArray addObject:model];
 //
 //            timestamp += 50 * 1000;
+//            
+//            LYSessionMessage *bModel = [LYSessionMessage new];
+//            bModel.session = self.session;
+//            bModel.config = self.sessionManager.config;
+//            bModel.timestamp = timestamp;
+//            bModel.user = [LYChatUserModel userWithUserId:@"hl456" nickname:@"国崎往人" avatarImage:avatarImage];
+//            bModel.contentText = @"庭院深深深几许？杨柳堆烟，帘幕无重数，玉勒雕鞍游冶处，楼高不见章台路。";
+//            [messageArray addObject:bModel];
+//            timestamp += 50 * 1000;
 //        }
 //
-//        LYSessionMessage *model = [LYSessionMessage new];
-//        model.session = self.session;
-//        model.config = self.sessionManager.config;
-//        model.timestamp = timestamp;
-//        model.user = [LYChatUserModel userWithUserId:@"hl456" nickname:@"国崎往人" avatarImage:avatarImage];
-//        model.contentText = @"庭院深深深几许？杨柳堆烟，帘幕无重数，玉勒雕鞍游冶处，楼高不见章台路。";
-//        [messageArray addObject:model];
-//
+//        dispatch_async(dispatch_get_main_queue(), ^{
+//            [self.sessionManager.tableConfig.refreshControl endRefreshing];
+//        });
+//        
 //        if (self.sessionManager.dataSource.dataArray.count > 0) {
 //            [self.sessionManager.dataSource insertMessages:messageArray checkOrder:true];
 //        } else {

@@ -116,8 +116,9 @@
             insets.top -= (self.scrollView.adjustedContentInset.top - self.scrollView.contentInset.top);
         }
         self.scrollView.contentInset = insets;
-    } completion:^(BOOL finished) {
         [self setNeedsLayout];
+    } completion:^(BOOL finished) {
+        
     }];
 }
 

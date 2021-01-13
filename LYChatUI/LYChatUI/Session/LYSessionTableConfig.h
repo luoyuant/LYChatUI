@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * 下拉加载更多
  */
-- (void)didPullUp;
+- (void)didScrollToTop:(UIScrollView *)scrollView;
 
 @end
 
