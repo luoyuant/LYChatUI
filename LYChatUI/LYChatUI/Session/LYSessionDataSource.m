@@ -153,6 +153,14 @@
     });
 }
 
+/**
+ * 清空消息
+ */
+- (void)removeAllMessages {
+    [self.dataArray removeAllObjects];
+    [self.messageArray removeAllObjects];
+}
+
 #pragma mark - Public Method
 
 /**

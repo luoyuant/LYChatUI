@@ -31,6 +31,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)appendMessages:(NSArray<LYSessionMessage *> *)messages scrollToBottom:(BOOL)scrollToBottom;
 
+/**
+ * 清空消息
+ */
+- (void)removeAllMessages;
 
 @optional
 
