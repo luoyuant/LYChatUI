@@ -20,6 +20,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)avatarImageView:(UIImageView *)avatarImageView imageForMessage:(LYSessionMessage *)message;
 
+@optional
+
+/**
+ * 点击了头像
+ */
+- (void)didTapAvatar:(UIImageView *)avatarImageView message:(LYSessionMessage *)message;
+
 @end
 
 @interface LYSessionCell : UITableViewCell

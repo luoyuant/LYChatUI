@@ -54,6 +54,8 @@
         _avatarImageView.layer.masksToBounds = true;
         _avatarImageView.contentMode = UIViewContentModeScaleAspectFill;
         _avatarImageView.clipsToBounds = true;
+        _avatarImageView.userInteractionEnabled = true;
+        [_avatarImageView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(avatarTap:)]];
         [self.contentView addSubview:_avatarImageView];
         
         _nicknameLabel = [UILabel new];
@@ -176,6 +178,14 @@
     CGFloat y = self.layout.showNickname ? (CGRectGetMaxY(_nicknameLabel.frame) + 2) : margin.top;
     _sessionContentView.frame = CGRectMake(x, y, size.width, size.height);
     _sessionContentView.backgroundColor = onLeft ? _message.config.colorConfig.leftSessionContentColor : _message.config.colorConfig.rightSessionContentColor;
+}
+
+#pragma mark - Action
+
+- (void)avatarTap:(UITapGestureRecognizer *)sender {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(didTapAvatar:message:)]) {
+        [self.delegate didTapAvatar:_avatarImageView message:_message];
+    }
 }
 
 #pragma mark - Refresh
