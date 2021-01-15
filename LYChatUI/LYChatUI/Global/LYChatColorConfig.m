@@ -42,13 +42,23 @@
 }
 
 /**
- * 内容文字颜色
+ * 左侧内容文字颜色
  */
-- (UIColor *)contentTextColor {
-    if (!_contentTextColor) {
-        _contentTextColor = [UIColor colorWithHexUserInterfaceStyleLight:0x222222 dark:0xd1d1d1];
+- (UIColor *)leftContentTextColor {
+    if (!_leftContentTextColor) {
+        _leftContentTextColor = [UIColor colorWithHexUserInterfaceStyleLight:0x222222 dark:0xd1d1d1];
     }
-    return _contentTextColor;
+    return _leftContentTextColor;
+}
+
+/**
+ * 右侧内容文字颜色
+ */
+- (UIColor *)rightContentTextColor {
+    if (!_rightContentTextColor) {
+        _rightContentTextColor = [UIColor colorWithHexUserInterfaceStyleLight:0x222222 dark:0xd1d1d1];
+    }
+    return _rightContentTextColor;
 }
 
 /**

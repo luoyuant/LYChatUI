@@ -172,10 +172,11 @@
  * 刷新数据
  */
 - (void)refresh {
+    BOOL onLeft = _model.layout.layoutType == LYSessionCellLayoutTypeLeft;
     _contentLabel.text = _model.contentText;
     
     _contentLabel.font = _model.config.fontConfig.contentFont;
-    _contentLabel.textColor = _model.config.colorConfig.contentTextColor;
+    _contentLabel.textColor = onLeft ? _model.config.colorConfig.leftContentTextColor : _model.config.colorConfig.rightContentTextColor;
 }
 
 @end

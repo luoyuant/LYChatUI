@@ -28,9 +28,14 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIColor *nicknameTextColor;
 
 /**
- * 内容文字颜色
+ * 左侧内容文字颜色
  */
-@property (nonatomic, strong) UIColor *contentTextColor;
+@property (nonatomic, strong) UIColor *leftContentTextColor;
+
+/**
+ * 右侧内容文字颜色
+ */
+@property (nonatomic, strong) UIColor *rightContentTextColor;
 
 /**
  * 聊天页面背景颜色
