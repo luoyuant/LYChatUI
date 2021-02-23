@@ -9,6 +9,7 @@
 #import "LYChatConfig.h"
 #import "LYSessionCell.h"
 #import "LYChatConst.h"
+#import "LYTextLayout.h"
 
 @interface LYSessionCellLayout ()
 
@@ -91,11 +92,21 @@
 }
 
 /**
+ * label 边距
+ */
+- (UIEdgeInsets)contentLabelInsets {
+    if (UIEdgeInsetsEqualToEdgeInsets(_contentLabelInsets, UIEdgeInsetsZero)) {
+        _contentLabelInsets = UIEdgeInsetsMake(8, 4, 8, 4);
+    }
+    return _contentLabelInsets;
+}
+
+/**
  * 内容内边距
  */
 - (UIEdgeInsets)contentPadding {
     if (UIEdgeInsetsEqualToEdgeInsets(_contentPadding, UIEdgeInsetsZero)) {
-        _contentPadding = UIEdgeInsetsMake(10, 12, 10, 12);
+        _contentPadding = UIEdgeInsetsMake(2, 8, 2, 8);
     }
     return _contentPadding;
 }
@@ -115,7 +126,7 @@
  */
 - (CGFloat)contentMaxWidth {
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
-    _contentMaxWidth = width - self.avatarMargin.x - self.avatarSize.width - self.contentMargin.left - 32;
+    _contentMaxWidth = width - self.avatarMargin.x - self.avatarSize.width - self.contentMargin.left - 61;
     return _contentMaxWidth;
 }
 
@@ -131,13 +142,17 @@
     CGSize contentSize = [self.contentSizeJson[@(cellWidth)] CGSizeValue];
     if (CGSizeEqualToSize(contentSize, CGSizeZero)) {
         UIEdgeInsets padding = self.contentPadding;
-        CGFloat widthOffset = self.contentTriangleWidth + padding.left + padding.right;
+        UIEdgeInsets contentLabelInsets = self.contentLabelInsets;
+        CGFloat widthOffset = self.contentTriangleWidth + padding.left + padding.right + contentLabelInsets.left + contentLabelInsets.right;
         CGFloat minHeight = self.avatarSize.height;
         CGFloat maxWidth = self.contentMaxWidth - widthOffset;
-        CGRect rect = [model.contentText boundingRectWithSize:CGSizeMake(maxWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : model.config.fontConfig.contentFont} context:nil];
-        CGFloat width = rect.size.width + widthOffset;
-        CGFloat height = rect.size.height + padding.top + padding.bottom;
-        contentSize = CGSizeMake(MIN(width, maxWidth), MAX(minHeight, height));
+        
+//        CGRect rect = [model.contentText boundingRectWithSize:CGSizeMake(maxWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : model.config.fontConfig.contentFont} context:nil];
+        CGSize textSize = [LYTextLayout sizeThatFits:CGSizeMake(maxWidth, MAXFLOAT) text:[[NSAttributedString alloc] initWithString:model.contentText attributes:@{NSFontAttributeName : model.config.fontConfig.contentFont}] textContentInsets:UIEdgeInsetsZero];
+        
+        CGFloat width = textSize.width + widthOffset;
+        CGFloat height = textSize.height + padding.top + padding.bottom + contentLabelInsets.top + contentLabelInsets.bottom;
+        contentSize = CGSizeMake(MIN(width, self.contentMaxWidth), MAX(minHeight, height));
         self.contentSizeJson[@(cellWidth)] = [NSValue valueWithCGSize:contentSize];
     }
     return contentSize;

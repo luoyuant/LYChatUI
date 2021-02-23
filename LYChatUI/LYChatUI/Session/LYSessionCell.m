@@ -27,10 +27,8 @@
 - (void)setMessage:(LYSessionMessage *)message {
     BOOL shouldUpdate = _message != message;
     _message = message;
-    _sessionContentView.model = message;
     if (shouldUpdate) {
         [self refresh];
-        [self setNeedsLayout];
     }
 }
 
@@ -178,6 +176,7 @@
     CGFloat y = self.layout.showNickname ? (CGRectGetMaxY(_nicknameLabel.frame) + 2) : margin.top;
     _sessionContentView.frame = CGRectMake(x, y, size.width, size.height);
     _sessionContentView.backgroundColor = onLeft ? _message.config.colorConfig.leftSessionContentColor : _message.config.colorConfig.rightSessionContentColor;
+    _sessionContentView.contentLabel.layer.backgroundColor = _sessionContentView.backgroundColor.CGColor;
 }
 
 #pragma mark - Action
@@ -205,6 +204,10 @@
         [self.delegate avatarImageView:_avatarImageView imageForMessage:_message];
     }
     
+    _sessionContentView.message = _message; 
+    [_sessionContentView refresh];
+    
+    [self setNeedsLayout];
 }
 
 

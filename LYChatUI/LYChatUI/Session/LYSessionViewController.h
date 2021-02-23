@@ -9,10 +9,11 @@
 #import "LYSession.h"
 #import "LYSessionManager.h"
 #import "LYSessionCell.h"
+#import "LYLabel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LYSessionViewController : UIViewController <LYSessionTableConfigDelegate, LYSessionCellDelegate>
+@interface LYSessionViewController : UIViewController <LYSessionTableConfigDelegate, LYSessionCellDelegate, LYLabelSelectionDelegate>
 
 /**
  * 会话对象
@@ -29,6 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong) UITableView *tableView;
 
+@property (nonatomic, strong) UIMenuController *selectedTextMenuController;
 
 @end
 

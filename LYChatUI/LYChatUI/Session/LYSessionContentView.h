@@ -7,6 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LYSessionMessage.h"
+#import "LYLabel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -16,9 +17,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UIView *contentView;
 
-@property (nonatomic, strong) UILabel *contentLabel;
+@property (nonatomic, strong) LYLabel *contentLabel;
 
-@property (nonatomic, weak) LYSessionMessage *model;
+@property (nonatomic, weak) LYSessionMessage *message;
 
 /**
  * 刷新数据

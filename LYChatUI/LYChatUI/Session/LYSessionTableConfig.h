@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)didScrollToTop:(UIScrollView *)scrollView;
 
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView;
+
 @end
 
 @interface LYSessionTableConfig : NSObject

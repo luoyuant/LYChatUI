@@ -10,21 +10,11 @@
 
 @interface LYSessionContentView ()
 
+@property (nonatomic, assign) CGSize contentMaskSize;
+
 @end
 
 @implementation LYSessionContentView
-
-#pragma mark - Setter
-
-- (void)setModel:(LYSessionMessage *)model {
-    BOOL shouldUpdate = _model != model;
-    _model = model;
-    if (shouldUpdate) {
-        [self updateContentMask];
-        [self refresh];
-        [self setNeedsLayout];
-    }
-}
 
 #pragma mark - Init
 
@@ -32,11 +22,14 @@
     self = [super initWithFrame:frame];
     if (self) {
         _contentView = [[UIView alloc] initWithFrame:self.bounds];
+        _contentView.userInteractionEnabled = true;
         [self addSubview:_contentView];
         
-        _contentLabel = [UILabel new];
+        _contentLabel = [LYLabel new];
         _contentLabel.numberOfLines = 0;
-        _contentLabel.adjustsFontSizeToFitWidth = true;
+        _contentLabel.selectable = true;
+        _contentLabel.magnifierSize = CGSizeMake(128, 42);
+//        _contentLabel.adjustsFontSizeToFitWidth = true;
         [_contentView addSubview:_contentLabel];
         
     }
@@ -56,8 +49,8 @@
 }
 
 - (void)layoutContentView {
-    if ([_model.layout isKindOfClass:[LYSessionCellLayout class]]) {
-        LYSessionCellLayout *layout = _model.layout;
+    if ([_message.layout isKindOfClass:[LYSessionCellLayout class]]) {
+        LYSessionCellLayout *layout = _message.layout;
         CGSize size = self.bounds.size;
         BOOL onLeft = layout.layoutType == LYSessionCellLayoutTypeLeft;
         CGFloat leftMargin = onLeft ? layout.contentTriangleWidth : 0;
@@ -66,10 +59,11 @@
 }
 
 - (void)layoutContentLabel {
-    if ([_model.layout isKindOfClass:[LYSessionCellLayout class]]) {
-        LYSessionCellLayout *layout = _model.layout;
+    if ([_message.layout isKindOfClass:[LYSessionCellLayout class]]) {
+        LYSessionCellLayout *layout = _message.layout;
         UIEdgeInsets padding = layout.contentPadding;
         CGSize size = self.contentView.bounds.size;
+        _contentLabel.textContentInsets = layout.contentLabelInsets;
         _contentLabel.frame = CGRectMake(padding.left, padding.top, size.width - padding.left - padding.right, size.height - padding.top - padding.bottom);
     }
 }
@@ -80,8 +74,8 @@
  * 更新内容区域遮罩
  */
 - (void)updateContentMask {
-    if ([_model.layout isKindOfClass:[LYSessionCellLayout class]]) {
-        LYSessionCellLayout *layout = _model.layout;
+    if ([_message.layout isKindOfClass:[LYSessionCellLayout class]]) {
+        LYSessionCellLayout *layout = _message.layout;
         CGSize size = self.bounds.size;
         if ((size.width == 0 || size.height == 0) || layout.contentTriangleWidth == 0) {
             return;
@@ -96,17 +90,22 @@
  */
 - (void)updateContentMaskLayer {
     LYSessionCellLayout *layout;
-    if ([_model.layout isKindOfClass:[LYSessionCellLayout class]]) {
-        layout = _model.layout;
+    if ([_message.layout isKindOfClass:[LYSessionCellLayout class]]) {
+        layout = _message.layout;
     }
     if (!layout) {
+        return;
+    }
+    CGSize size = self.bounds.size;
+    if (CGSizeEqualToSize(size, _contentMaskSize)) {
         return;
     }
     
     if (!_contentMaskLayer) {
         _contentMaskLayer = [CAShapeLayer layer];
     }
-    CGSize size = self.bounds.size;
+    
+    _contentMaskSize = size;
     CGFloat padding = layout.contentTriangleWidth;
     CGFloat cornerRadius = 4;
     CGFloat triangleTopOffset = 14;
@@ -172,11 +171,15 @@
  * 刷新数据
  */
 - (void)refresh {
-    BOOL onLeft = _model.layout.layoutType == LYSessionCellLayoutTypeLeft;
-    _contentLabel.text = _model.contentText;
+    [self updateContentMask];
     
-    _contentLabel.font = _model.config.fontConfig.contentFont;
-    _contentLabel.textColor = onLeft ? _model.config.colorConfig.leftContentTextColor : _model.config.colorConfig.rightContentTextColor;
+    BOOL onLeft = _message.layout.layoutType == LYSessionCellLayoutTypeLeft;
+    _contentLabel.font = _message.config.fontConfig.contentFont;
+    _contentLabel.textColor = onLeft ? _message.config.colorConfig.leftContentTextColor : _message.config.colorConfig.rightContentTextColor;
+    
+    _contentLabel.text = _message.contentText;
+    
+    [self setNeedsLayout];
 }
 
 @end

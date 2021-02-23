@@ -7,7 +7,8 @@
 
 #import "ViewController.h"
 #import "LYChatConfig.h"
-#import "LYSessionViewController.h"
+#import "TestViewController.h"
+#import "TestSessionViewController.h"
 
 @interface ViewController ()
 
@@ -21,7 +22,6 @@
     
     self.view.userInteractionEnabled = true;
     [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapAction)]];
-    
     
 //    CAShapeLayer *layer = [CAShapeLayer layer];
 //    UIBezierPath *path = [UIBezierPath bezierPath];
@@ -59,10 +59,14 @@
 
 - (void)tapAction {
     [LYChatConfig shared].currentUser = [LYChatUserModel userWithUserId:@"hl456" nickname:@"" avatarImage:nil];
-    LYSessionViewController *vc = [LYSessionViewController new];
+    TestSessionViewController *vc = [TestSessionViewController new];
     vc.session = [LYSession sessionWithSessionId:@"" sessionType:LYSessionTypeGroup];
     vc.session.showNickname = true;
     [self.navigationController pushViewController:vc animated:true];
+    
+//    TestViewController *vc = [TestViewController new];
+//    [self.navigationController pushViewController:vc animated:true];
+    
 }
 
 @end

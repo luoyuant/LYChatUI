@@ -91,6 +91,7 @@
         if ([cell isKindOfClass:[LYSessionCell class]]) {
             LYSessionCell *sessionCell = (LYSessionCell *)cell;
             sessionCell.delegate = self.sessionViewController;
+            sessionCell.sessionContentView.contentLabel.selectionDelegate = self.sessionViewController;
             sessionCell.message = message;
         } else if ([cell isKindOfClass:[LYSessionTimestampCell class]] && [message isKindOfClass:[LYSessionTimestampMessage class]]) {
             LYSessionTimestampCell *timestampCell = (LYSessionTimestampCell *)cell;
@@ -117,6 +118,9 @@
         if (self.delegate && [self.delegate respondsToSelector:@selector(didScrollToTop:)]) {
             [self.delegate didScrollToTop:scrollView];
         }
+    }
+    if (self.delegate && [self.delegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {
+        [self.delegate scrollViewDidEndDecelerating:scrollView];
     }
 }
 

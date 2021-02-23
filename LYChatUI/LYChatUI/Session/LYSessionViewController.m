@@ -9,15 +9,28 @@
 #import "LYChatConfig.h"
 #import "LYChatConst.h"
 
-@interface LYSessionViewController ()
+@interface LYSessionViewController () <UIGestureRecognizerDelegate>
 
-
+@property (nonatomic, weak) LYSessionCell *selectingTextCell;
+@property (nonatomic, weak) LYLabel *selectingLabel;
 
 @end
 
 @implementation LYSessionViewController
 
 #pragma mark - Getter
+
+- (UIMenuController *)selectedTextMenuController {
+    if (!_selectedTextMenuController) {
+        _selectedTextMenuController = [UIMenuController new];
+        _selectedTextMenuController.menuItems = @[[[UIMenuItem alloc] initWithTitle:@"复制" action:@selector(lyTextCopy:)], [[UIMenuItem alloc] initWithTitle:@"全选" action:@selector(lyTextSelectAll:)]];
+    }
+    return _selectedTextMenuController;
+}
+
+- (LYLabel *)selectingLabel {
+    return _selectingTextCell.sessionContentView.contentLabel;
+}
 
 - (LYSessionManager *)sessionManager {
     if (!_sessionManager) {
@@ -40,8 +53,6 @@
     
     [self.sessionManager setup:self];
     self.sessionManager.tableConfig.delegate = self;
-        
-//    [self getData];
     
 }
 
@@ -62,6 +73,7 @@
     self.tableView.tableFooterView = [UIView new];
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
     tapGestureRecognizer.cancelsTouchesInView = NO;
+    tapGestureRecognizer.delegate = self;
     [tapGestureRecognizer addTarget:self action:@selector(onTapTableView:)];
     [self.tableView addGestureRecognizer:tapGestureRecognizer];
     self.tableView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
@@ -76,47 +88,12 @@
 //    [self getData];
 }
 
-#pragma mark - Get data
-
-- (void)getData {
-//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//        UIImage *avatarImage = [UIImage imageNamed:@"avatar"];
-//
-//        NSTimeInterval timestamp = 1619985025000;
-//
-//        NSMutableArray *messageArray = [NSMutableArray array];
-//
-//        for (NSInteger i = 0; i < 1; i++) {
-//            LYSessionMessage *model = [LYSessionMessage new];
-//            model.session = self.session;
-//            model.config = self.sessionManager.config;
-//            model.timestamp = timestamp;
-//            model.user = [LYChatUserModel userWithUserId:@"hl123" nickname:@"神尾观铃" avatarImage:avatarImage];
-//            model.contentText = @"庭院深深深几许？杨柳堆烟，帘幕无重数，玉勒雕鞍游冶处，楼高不见章台路。";
-//            [messageArray addObject:model];
-//
-//            timestamp += 50 * 1000;
-//            
-//            LYSessionMessage *bModel = [LYSessionMessage new];
-//            bModel.session = self.session;
-//            bModel.config = self.sessionManager.config;
-//            bModel.timestamp = timestamp;
-//            bModel.user = [LYChatUserModel userWithUserId:@"hl456" nickname:@"国崎往人" avatarImage:avatarImage];
-//            bModel.contentText = @"庭院深深深几许？杨柳堆烟，帘幕无重数，玉勒雕鞍游冶处，楼高不见章台路。";
-//            [messageArray addObject:bModel];
-//            timestamp += 50 * 1000;
-//        }
-//
-//        dispatch_async(dispatch_get_main_queue(), ^{
-//            [self.sessionManager.tableConfig.refreshControl endRefreshing];
-//        });
-//        
-//        if (self.sessionManager.dataSource.dataArray.count > 0) {
-//            [self.sessionManager.dataSource insertMessages:messageArray checkOrder:true];
-//        } else {
-//            [self.sessionManager.dataSource appendMessages:messageArray scrollToBottom:true];
-//        }
-//    });
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    if (self.selectingTextCell && self.selectingTextCell.sessionContentView.contentLabel.selectedTextRange.length > 0) {
+        if (!self.selectedTextMenuController.menuVisible) {
+            [self.selectedTextMenuController setMenuVisible:YES animated:YES];
+        }
+    }
 }
 
 #pragma mark - LYSessionCellDelegate
@@ -125,10 +102,118 @@
     avatarImageView.image = message.user.avatarImage;
 }
 
+#pragma mark - LYLabelSelectionDelegate
+
+- (void)labelDidBeginSelecting:(LYLabel *)label {
+    CGPoint p = [label convertPoint:label.frame.origin toView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+    if (indexPath) {
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        if ([cell isKindOfClass:[LYSessionCell class]]) {
+            if (_selectingTextCell != cell) {
+                [_selectingTextCell.sessionContentView.contentLabel endTextSelecting];
+            }
+            _selectingTextCell = (LYSessionCell *)cell;
+        }
+    }
+}
+
+- (void)labelDidBeginTrackingGrabber:(LYLabel *)label {
+    self.tableView.panGestureRecognizer.enabled = false;
+}
+
+- (void)labelDidEndTrackingGrabber:(LYLabel *)label {
+    self.tableView.panGestureRecognizer.enabled = true;
+}
+
+- (BOOL)labelShouldShowMenu:(LYLabel *)label selectionView:(nonnull LYTextSelectionView *)selectionView selectedRange:(nonnull LYTextRange *)selectedRange selectionRect:(CGRect)selectionRect {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        UIMenuController *menu = self.selectedTextMenuController;
+        [menu setTargetRect:CGRectStandardize(selectionRect) inView:selectionView];
+        [menu update];
+        if (!menu.menuVisible) {
+            [menu setMenuVisible:YES animated:YES];
+        }
+    });
+    return true;
+}
+
+- (BOOL)labelShouldHideMenu:(LYLabel *)label selectedRange:(LYTextRange *)selectedRange {
+    UIMenuController *menu = self.selectedTextMenuController;
+    [menu setMenuVisible:NO animated:YES];
+    return true;
+}
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+    if (action == @selector(lyTextCopy:)) {
+        return true;
+    }
+    LYLabel *lb = self.selectingLabel;
+    NSUInteger textlen = lb.attributedText ? lb.attributedText.length : lb.text.length;
+    BOOL isSelectedAll = lb.selectedTextRange.length == textlen;
+    if (action == @selector(lyTextSelectAll:) && !isSelectedAll) {
+        return true;
+    }
+    return false;
+}
+
+- (void)lyTextCopy:(id)sender {
+    LYLabel *lb = _selectingTextCell.sessionContentView.contentLabel;
+    NSRange range = lb.selectedTextRange.asRange;
+    if (range.location == NSNotFound || range.length == NSNotFound) return;
+    NSString *text;
+    if (lb.attributedText) {
+        text = [lb.attributedText attributedSubstringFromRange:range].string;
+    } else {
+        text = [lb.text substringWithRange:range];
+    }
+    [UIPasteboard generalPasteboard].string = text;
+    [self endTextSelecting];
+}
+
+- (void)lyTextSelectAll:(id)sender {
+    [self.selectingLabel selectAllText];
+}
+
+#pragma mark - UIMenuController
+
+- (BOOL)canBecomeFirstResponder {
+    return true;
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    CGPoint point = [touch locationInView:gestureRecognizer.view];
+    [self endTextSelectingForPoint:point];
+    return true;
+}
+
 #pragma mark - Action
 
-- (void)onTapTableView:(UITapGestureRecognizer *)tapGestureRecognizer {
+- (void)onTapTableView:(UIGestureRecognizer *)tapGestureRecognizer {
     [self.view endEditing:true];
+    
+    CGPoint point = [tapGestureRecognizer locationInView:tapGestureRecognizer.view];
+    [self endTextSelectingForPoint:point];
+}
+
+- (void)endTextSelectingForPoint:(CGPoint)point {
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
+    UITableViewCell *cell;
+    if (indexPath) {
+        cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    }
+    if (cell != _selectingTextCell) {
+        [self endTextSelecting];
+    }
+}
+
+- (void)endTextSelecting {
+    if (_selectingTextCell) {
+        [_selectingTextCell.sessionContentView.contentLabel endTextSelecting];
+        _selectingTextCell = nil;
+    }
 }
 
 #pragma mark - Dealloc
