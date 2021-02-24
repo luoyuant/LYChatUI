@@ -31,7 +31,7 @@
 
         NSMutableArray *messageArray = [NSMutableArray array];
 
-        for (NSInteger i = 0; i < 1; i++) {
+        for (NSInteger i = 0; i < 10; i++) {
             LYSessionMessage *model = [LYSessionMessage new];
             model.session = self.session;
             model.config = self.sessionManager.config;
