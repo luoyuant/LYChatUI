@@ -11,6 +11,7 @@
 #import "LYSessionCell.h"
 #import "LYSessionTimestampCell.h"
 #import "LYChatConfig.h"
+#import "LYSessionTextContentView.h"
 
 @interface LYSessionTableConfig () <UITableViewDelegate, UITableViewDataSource>
 
@@ -71,7 +72,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < _dataSource.dataArray.count) {
-        LYSessionMessage *message = _dataSource.dataArray[indexPath.row];
+        LYSessionMessageModel *message = _dataSource.dataArray[indexPath.row];
         return [message.layout cellHeightForCellWidth:tableView.bounds.size.width model:message];
     }
     return 0;
@@ -79,7 +80,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row < _dataSource.dataArray.count) {
-        LYSessionMessage *message = _dataSource.dataArray[indexPath.row];
+        LYSessionMessageModel *message = _dataSource.dataArray[indexPath.row];
         NSString *identifier = NSStringFromClass(message.layout.cellClass);
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
         if (!cell) {
@@ -91,7 +92,9 @@
         if ([cell isKindOfClass:[LYSessionCell class]]) {
             LYSessionCell *sessionCell = (LYSessionCell *)cell;
             sessionCell.delegate = self.sessionViewController;
-            sessionCell.sessionContentView.contentLabel.selectionDelegate = self.sessionViewController;
+            if ([sessionCell.sessionContentView isKindOfClass:[LYSessionTextContentView class]]) {
+                ((LYSessionTextContentView *)sessionCell.sessionContentView).contentLabel.selectionDelegate = self.sessionViewController;
+            }
             sessionCell.message = message;
         } else if ([cell isKindOfClass:[LYSessionTimestampCell class]] && [message isKindOfClass:[LYSessionTimestampMessage class]]) {
             LYSessionTimestampCell *timestampCell = (LYSessionTimestampCell *)cell;
@@ -109,8 +112,24 @@
     [self didPullUp:scrollView];
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(scrollViewWillBeginDragging:)]) {
+        [self.delegate scrollViewWillBeginDragging:scrollView];
+    }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(scrollViewDidEndDragging:willDecelerate:)]) {
+        [self.delegate scrollViewDidEndDragging:scrollView willDecelerate:decelerate];
+    }
+}
+
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
     [self didPullUp:scrollView];
+    
+    if (self.delegate && [self.delegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {
+        [self.delegate scrollViewDidEndDecelerating:scrollView];
+    }
 }
 
 - (void)didPullUp:(UIScrollView *)scrollView {
@@ -118,9 +137,6 @@
         if (self.delegate && [self.delegate respondsToSelector:@selector(didScrollToTop:)]) {
             [self.delegate didScrollToTop:scrollView];
         }
-    }
-    if (self.delegate && [self.delegate respondsToSelector:@selector(scrollViewDidEndDecelerating:)]) {
-        [self.delegate scrollViewDidEndDecelerating:scrollView];
     }
 }
 

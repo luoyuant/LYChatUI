@@ -780,11 +780,16 @@
 #pragma mark - Public Method
 
 - (void)selectAllText {
-    [self _updateSelectedRange:[LYTextRange rangeWithRange:NSMakeRange(0, _innerText.length)]];
+    NSUInteger len = _innerText.length;
+    [self _updateSelectedRange:[LYTextRange rangeWithRange:NSMakeRange(0, len)]];
+    if (len > 0) {
+        [self _showMenu];
+    }
 }
 
 - (void)endTextSelecting {
     self.selectedTextRange = [LYTextRange rangeWithRange:NSMakeRange(0, 0)];
+    [self _hideMenu];
 }
 
 #pragma mark - Dealloc

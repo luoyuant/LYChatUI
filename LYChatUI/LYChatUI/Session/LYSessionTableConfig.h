@@ -22,6 +22,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)didScrollToTop:(UIScrollView *)scrollView;
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView;
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate;
+
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView;
 
 @end

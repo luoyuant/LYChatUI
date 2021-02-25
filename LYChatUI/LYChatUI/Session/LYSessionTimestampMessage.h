@@ -6,11 +6,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "LYSessionMessage.h"
+#import "LYSessionMessageModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface LYSessionTimestampMessage : LYSessionMessage
+@interface LYSessionTimestampMessage : LYSessionMessageModel
 
 /**
  * 时间文本

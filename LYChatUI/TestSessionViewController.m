@@ -32,22 +32,26 @@
         NSMutableArray *messageArray = [NSMutableArray array];
 
         for (NSInteger i = 0; i < 10; i++) {
-            LYSessionMessage *model = [LYSessionMessage new];
-            model.session = self.session;
+            LYSessionMessageModel *model = [LYSessionMessageModel new];
+            LYChatMessage *message = [LYChatMessage new];
+            message.session = self.session;
+            message.user = [LYChatUserModel userWithUserId:@"hl123" nickname:@"神尾观铃" avatarImage:avatarImage];
+            message.text = @"庭院深深深几许？杨柳堆烟，帘幕无重数，玉勒雕鞍游冶处，楼高不见章台路";
             model.config = self.sessionManager.config;
             model.timestamp = timestamp;
-            model.user = [LYChatUserModel userWithUserId:@"hl123" nickname:@"神尾观铃" avatarImage:avatarImage];
-            model.contentText = @"庭院深深深几许？杨柳堆烟，帘幕无重数，玉勒雕鞍游冶处，楼高不见章台路";
+            model.message = message;
             [messageArray addObject:model];
 
             timestamp += 50 * 1000;
 
-            LYSessionMessage *bModel = [LYSessionMessage new];
-            bModel.session = self.session;
+            LYSessionMessageModel *bModel = [LYSessionMessageModel new];
+            message = [LYChatMessage new];
+            message.user = [LYChatUserModel userWithUserId:@"hl456" nickname:@"国崎往人" avatarImage:avatarImage];
+            message.text = @"庭院深深深几许？杨柳堆烟，帘幕无重数，玉勒雕鞍游冶处，楼高不见章台路。";
+            message.session = self.session;
             bModel.config = self.sessionManager.config;
             bModel.timestamp = timestamp;
-            bModel.user = [LYChatUserModel userWithUserId:@"hl456" nickname:@"国崎往人" avatarImage:avatarImage];
-            bModel.contentText = @"庭院深深深几许？杨柳堆烟，帘幕无重数，玉勒雕鞍游冶处，楼高不见章台路。";
+            bModel.message = message;
             [messageArray addObject:bModel];
             timestamp += 50 * 1000;
         }

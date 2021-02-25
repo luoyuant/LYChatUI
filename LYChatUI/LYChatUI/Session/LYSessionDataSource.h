@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LYSessionMessage.h"
+#import "LYSessionMessageModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -22,14 +22,14 @@ NS_ASSUME_NONNULL_BEGIN
  * @param messages 插入消息，消息顺序为时间戳从小到大
  * @param checkOrder 是否对将要插入的消息排序，如果已确认时间戳是从小到大则不必要在排序
  */
-- (void)insertMessages:(NSArray<LYSessionMessage *> *)messages checkOrder:(BOOL)checkOrder;
+- (void)insertMessages:(NSArray<LYSessionMessageModel *> *)messages checkOrder:(BOOL)checkOrder;
 
 /**
  * 列表末尾添加消息
  * @param messages 添加消息
  * @param scrollToBottom 是否滚动到底部
  */
-- (void)appendMessages:(NSArray<LYSessionMessage *> *)messages scrollToBottom:(BOOL)scrollToBottom;
+- (void)appendMessages:(NSArray<LYSessionMessageModel *> *)messages scrollToBottom:(BOOL)scrollToBottom;
 
 /**
  * 清空消息
@@ -46,12 +46,12 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * 数据源，包含时间戳数据
  */
-@property (nonatomic, strong) NSMutableArray<LYSessionMessage *> *dataArray;
+@property (nonatomic, strong) NSMutableArray<LYSessionMessageModel *> *dataArray;
 
 /**
  * 消息列表，不包含时间戳数据
  */
-@property (nonatomic, strong) NSMutableArray<LYSessionMessage *> *messageArray;
+@property (nonatomic, strong) NSMutableArray<LYSessionMessageModel *> *messageArray;
 
 /**
  * 设置

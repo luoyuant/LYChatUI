@@ -14,6 +14,7 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         instance = [[LYChatConfig alloc] init];
+        instance.sessionConfig = [LYSessionConfig new];
     });
     return instance;
 }
@@ -38,6 +39,13 @@
         _fontConfig = [LYChatFontConfig new];
     }
     return _fontConfig;
+}
+
+- (LYSessionConfig *)sessionConfig {
+    if (!_sessionConfig) {
+        _sessionConfig = [LYSessionConfig new];
+    }
+    return _sessionConfig;
 }
 
 /**

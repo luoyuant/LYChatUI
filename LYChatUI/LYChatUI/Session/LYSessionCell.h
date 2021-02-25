@@ -7,7 +7,7 @@
 
 #import <UIKit/UIKit.h>
 #import "LYSessionContentView.h"
-#import "LYSessionMessage.h"
+#import "LYSessionMessageModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,14 +18,14 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * 头像获取
  */
-- (void)avatarImageView:(UIImageView *)avatarImageView imageForMessage:(LYSessionMessage *)message;
+- (void)avatarImageView:(UIImageView *)avatarImageView imageForMessage:(LYSessionMessageModel *)message;
 
 @optional
 
 /**
  * 点击了头像
  */
-- (void)didTapAvatar:(UIImageView *)avatarImageView message:(LYSessionMessage *)message;
+- (void)didTapAvatar:(UIImageView *)avatarImageView message:(LYSessionMessageModel *)message;
 
 @end
 
@@ -54,7 +54,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * 消息
  */
-@property (nonatomic, strong) LYSessionMessage *message;
+@property (nonatomic, strong) LYSessionMessageModel *message;
 
 
 @property (nonatomic, weak) id<LYSessionCellDelegate> delegate;

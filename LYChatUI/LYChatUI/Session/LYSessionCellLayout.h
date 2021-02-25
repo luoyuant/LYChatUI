@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class LYSessionMessage;
+@class LYSessionMessageModel;
 
 typedef NS_ENUM(NSInteger, LYSessionCellLayoutType) {
     LYSessionCellLayoutTypeAuto  = 0, //自动布局
@@ -24,6 +24,11 @@ typedef NS_ENUM(NSInteger, LYSessionCellLayoutType) {
  * cell的类
  */
 @property (nonatomic, assign) Class cellClass;
+
+/**
+ * content View Class
+ */
+@property (nonatomic, assign) Class contentViewClass;
 
 /**
  * 布局类型（居左、居右）
@@ -81,18 +86,21 @@ typedef NS_ENUM(NSInteger, LYSessionCellLayoutType) {
  */
 @property (nonatomic, assign) CGFloat contentMaxWidth;
 
+
+@property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSValue *> *contentSizeJson;
+
 /**
  * 内容区域大小
  */
-- (CGSize)contentSizeForCellWidth:(CGFloat)cellWidth model:(LYSessionMessage *)model;
+- (CGSize)contentSizeForCellWidth:(CGFloat)cellWidth model:(LYSessionMessageModel *)model;
 
 /**
  * cell高度
  */
-- (CGFloat)cellHeightForCellWidth:(CGFloat)cellWidth model:(LYSessionMessage *)model;
+- (CGFloat)cellHeightForCellWidth:(CGFloat)cellWidth model:(LYSessionMessageModel *)model;
 
 
-- (void)setupWithMessage:(LYSessionMessage *)message;
+- (void)setupWithMessage:(LYSessionMessageModel *)messageModel;
 
 @end
 

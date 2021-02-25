@@ -92,16 +92,16 @@
 - (void)_drawBackgroundColorWithLayout:(LYTextLayout *)layout context:(CGContextRef)context size:(CGSize)size {
     CGContextSaveGState(context);
     {
-        if (!self.backgroundColor || CGColorGetAlpha(self.backgroundColor) < 1) {
-            CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
-            CGContextAddRect(context, CGRectMake(0, 0, size.width, size.height));
-            CGContextFillPath(context);
-        }
-        if (self.backgroundColor) {
-            CGContextSetFillColorWithColor(context, self.backgroundColor);
-            CGContextAddRect(context, CGRectMake(0, 0, size.width, size.height));
-            CGContextFillPath(context);
-        }
+//        if (!self.backgroundColor || CGColorGetAlpha(self.backgroundColor) < 1) {
+//            CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
+//            CGContextAddRect(context, CGRectMake(0, 0, size.width, size.height));
+//            CGContextFillPath(context);
+//        }
+//        if (self.backgroundColor) {
+//            CGContextSetFillColorWithColor(context, self.backgroundColor);
+//            CGContextAddRect(context, CGRectMake(0, 0, size.width, size.height));
+//            CGContextFillPath(context);
+//        }
     }
     CGContextRestoreGState(context);
 }

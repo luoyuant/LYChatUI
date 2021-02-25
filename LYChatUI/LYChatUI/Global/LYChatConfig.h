@@ -9,6 +9,7 @@
 #import "LYChatUserModel.h"
 #import "LYChatColorConfig.h"
 #import "LYChatFontConfig.h"
+#import "LYSessionConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -30,6 +31,11 @@ NS_ASSUME_NONNULL_BEGIN
  * 字体
  */
 @property (nonatomic, strong) LYChatFontConfig *fontConfig;
+
+/**
+ * 会话
+ */
+@property (nonatomic, strong) LYSessionConfig *sessionConfig;
 
 /**
  * 相隔多久显示一条时间戳(精确到毫秒)

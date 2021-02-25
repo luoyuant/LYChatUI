@@ -10,20 +10,12 @@
 
 @interface LYSessionTimestampCellLayout ()
 
-@property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSValue *> *contentSizeJson;
 
 @end
 
 @implementation LYSessionTimestampCellLayout
 
 #pragma mark - Getter
-
-- (NSMutableDictionary<NSNumber *, NSValue *> *)contentSizeJson {
-    if (!_contentSizeJson) {
-        _contentSizeJson = [NSMutableDictionary dictionary];
-    }
-    return _contentSizeJson;
-}
 
 - (Class)cellClass {
     return [LYSessionTimestampCell class];
@@ -35,14 +27,14 @@
 
 #pragma Public Method
 
-- (void)setupWithMessage:(LYSessionMessage *)message {
+- (void)setupWithMessage:(LYSessionMessageModel *)message {
     self.layoutType = LYSessionCellLayoutTypeAuto;
 }
 
 /**
  * cell高度
  */
-- (CGFloat)cellHeightForCellWidth:(CGFloat)cellWidth model:(LYSessionMessage *)model {
+- (CGFloat)cellHeightForCellWidth:(CGFloat)cellWidth model:(LYSessionMessageModel *)model {
     return 44;
 }
 

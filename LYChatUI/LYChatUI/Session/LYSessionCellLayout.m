@@ -13,7 +13,6 @@
 
 @interface LYSessionCellLayout ()
 
-@property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSValue *> *contentSizeJson;
 
 @end
 
@@ -48,6 +47,10 @@
         _cellClass = [LYSessionCell class];
     }
     return _cellClass;
+}
+
+- (Class)contentViewClass {
+    return nil;
 }
 
 /**
@@ -135,7 +138,7 @@
 /**
  * 内容区域大小
  */
-- (CGSize)contentSizeForCellWidth:(CGFloat)cellWidth model:(LYSessionMessage *)model {
+- (CGSize)contentSizeForCellWidth:(CGFloat)cellWidth model:(LYSessionMessageModel *)model {
     if (cellWidth <= 0) {
         return CGSizeZero;
     }
@@ -147,12 +150,9 @@
         CGFloat minHeight = self.avatarSize.height;
         CGFloat maxWidth = self.contentMaxWidth - widthOffset;
         
-//        CGRect rect = [model.contentText boundingRectWithSize:CGSizeMake(maxWidth, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName : model.config.fontConfig.contentFont} context:nil];
-        CGSize textSize = [LYTextLayout sizeThatFits:CGSizeMake(maxWidth, MAXFLOAT) text:[[NSAttributedString alloc] initWithString:model.contentText attributes:@{NSFontAttributeName : model.config.fontConfig.contentFont}] textContentInsets:UIEdgeInsetsZero];
-        
-        CGFloat width = textSize.width + widthOffset;
-        CGFloat height = textSize.height + padding.top + padding.bottom + contentLabelInsets.top + contentLabelInsets.bottom;
-        contentSize = CGSizeMake(MIN(width, self.contentMaxWidth), MAX(minHeight, height));
+        CGFloat width = maxWidth;
+        CGFloat height = minHeight;
+        contentSize = CGSizeMake(width, height);
         self.contentSizeJson[@(cellWidth)] = [NSValue valueWithCGSize:contentSize];
     }
     return contentSize;
@@ -162,16 +162,16 @@
 /**
  * cell高度
  */
-- (CGFloat)cellHeightForCellWidth:(CGFloat)cellWidth model:(LYSessionMessage *)model {
+- (CGFloat)cellHeightForCellWidth:(CGFloat)cellWidth model:(LYSessionMessageModel *)model {
     UIEdgeInsets margin = self.contentMargin;
     CGFloat topMargin = _showNickname ? 25 : margin.top;
     CGFloat height = [self contentSizeForCellWidth:cellWidth model:model].height + topMargin + margin.bottom;
     return height;
 }
 
-- (void)setupWithMessage:(LYSessionMessage *)message {
-    LYSession *session = message.session;
-    LYChatUserModel *user = message.user;
+- (void)setupWithMessage:(LYSessionMessageModel *)messageModel {
+    LYSession *session = messageModel.message.session;
+    LYChatUserModel *user = messageModel.message.user;
     if (!session) {
         LYDLog(@"session为NULL");
     }

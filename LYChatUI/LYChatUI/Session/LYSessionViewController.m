@@ -8,11 +8,13 @@
 #import "LYSessionViewController.h"
 #import "LYChatConfig.h"
 #import "LYChatConst.h"
+#import "LYSessionTextContentView.h"
 
 @interface LYSessionViewController () <UIGestureRecognizerDelegate>
 
-@property (nonatomic, weak) LYSessionCell *selectingTextCell;
+@property (nonatomic, weak) LYSessionTextContentView *selectingTextView;
 @property (nonatomic, weak) LYLabel *selectingLabel;
+@property (nonatomic, assign) CGRect selectedTextMenuTargetRect;
 
 @end
 
@@ -29,7 +31,7 @@
 }
 
 - (LYLabel *)selectingLabel {
-    return _selectingTextCell.sessionContentView.contentLabel;
+    return _selectingTextView.contentLabel;
 }
 
 - (LYSessionManager *)sessionManager {
@@ -88,18 +90,29 @@
 //    [self getData];
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    if (self.selectingTextCell && self.selectingTextCell.sessionContentView.contentLabel.selectedTextRange.length > 0) {
-        if (!self.selectedTextMenuController.menuVisible) {
-            [self.selectedTextMenuController setMenuVisible:YES animated:YES];
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if (!decelerate) {
+        if (self.selectingTextView && self.selectingTextView.contentLabel.selectedTextRange.length > 0) {
+            [self showSelectTextMenuFromView:self.selectingTextView.contentLabel.selectionView rect:_selectedTextMenuTargetRect];
         }
+    }
+}
+
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    if (self.selectingTextView && self.selectingTextView.contentLabel.selectedTextRange.length > 0) {
+        [self showSelectTextMenuFromView:self.selectingTextView.contentLabel.selectionView rect:_selectedTextMenuTargetRect];
     }
 }
 
 #pragma mark - LYSessionCellDelegate
 
-- (void)avatarImageView:(UIImageView *)avatarImageView imageForMessage:(LYSessionMessage *)message {
-    avatarImageView.image = message.user.avatarImage;
+- (void)avatarImageView:(UIImageView *)avatarImageView imageForMessage:(LYSessionMessageModel *)message {
+    avatarImageView.image = message.message.user.avatarImage;
 }
 
 #pragma mark - LYLabelSelectionDelegate
@@ -107,14 +120,19 @@
 - (void)labelDidBeginSelecting:(LYLabel *)label {
     CGPoint p = [label convertPoint:label.frame.origin toView:self.tableView];
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:p];
+    LYSessionContentView *contentView;
     if (indexPath) {
         UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
         if ([cell isKindOfClass:[LYSessionCell class]]) {
-            if (_selectingTextCell != cell) {
-                [_selectingTextCell.sessionContentView.contentLabel endTextSelecting];
-            }
-            _selectingTextCell = (LYSessionCell *)cell;
+            LYSessionCell *sessionCell = (LYSessionCell *)cell;
+            contentView = sessionCell.sessionContentView;
         }
+    }
+    if (_selectingTextView != contentView) {
+        [_selectingTextView.contentLabel endTextSelecting];
+    }
+    if ([contentView isKindOfClass:[LYSessionTextContentView class]]) {
+        _selectingTextView = (LYSessionTextContentView *)contentView;
     }
 }
 
@@ -127,20 +145,19 @@
 }
 
 - (BOOL)labelShouldShowMenu:(LYLabel *)label selectionView:(nonnull LYTextSelectionView *)selectionView selectedRange:(nonnull LYTextRange *)selectedRange selectionRect:(CGRect)selectionRect {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        UIMenuController *menu = self.selectedTextMenuController;
-        [menu setTargetRect:CGRectStandardize(selectionRect) inView:selectionView];
-        [menu update];
-        if (!menu.menuVisible) {
-            [menu setMenuVisible:YES animated:YES];
-        }
-    });
+    [self hideSelectTextMenu];
+    [self showSelectTextMenuFromView:_selectingTextView.contentLabel.selectionView rect:selectionRect];
     return true;
 }
 
 - (BOOL)labelShouldHideMenu:(LYLabel *)label selectedRange:(LYTextRange *)selectedRange {
-    UIMenuController *menu = self.selectedTextMenuController;
-    [menu setMenuVisible:NO animated:YES];
+    [self hideSelectTextMenu];
+    return true;
+}
+
+#pragma mark - UIMenuController
+
+- (BOOL)canBecomeFirstResponder {
     return true;
 }
 
@@ -158,7 +175,7 @@
 }
 
 - (void)lyTextCopy:(id)sender {
-    LYLabel *lb = _selectingTextCell.sessionContentView.contentLabel;
+    LYLabel *lb = _selectingTextView.contentLabel;
     NSRange range = lb.selectedTextRange.asRange;
     if (range.location == NSNotFound || range.length == NSNotFound) return;
     NSString *text;
@@ -173,19 +190,43 @@
 
 - (void)lyTextSelectAll:(id)sender {
     [self.selectingLabel selectAllText];
+//    [self hideSelectTextMenu];
+//    [self showSelectTextMenuFromView:_selectingTextView.contentLabel.selectionView rect:self.selectedTextMenuTargetRect];
 }
 
-#pragma mark - UIMenuController
+- (void)showSelectTextMenuFromView:(UIView *)targetView rect:(CGRect)targetRect {
+    UIMenuController *menu = self.selectedTextMenuController;
+    
+    if (!menu.menuVisible) {
+        _selectedTextMenuTargetRect = targetRect;
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            if (@available(iOS 13.0, *)) {
+                [menu showMenuFromView:targetView rect:targetRect];
+            } else {
+                [menu setTargetRect:targetRect inView:targetView];
+                [menu update];
+                [menu setMenuVisible:YES animated:YES];
+            }
+        });
+    }
+}
 
-- (BOOL)canBecomeFirstResponder {
-    return true;
+- (void)hideSelectTextMenu {
+    if (self.selectedTextMenuController.menuVisible) {
+        if (@available(iOS 13.0, *)) {
+            [self.selectedTextMenuController hideMenu];
+        } else {
+            [self.selectedTextMenuController setMenuVisible:NO animated:YES];
+        }
+    }
 }
 
 #pragma mark - UIGestureRecognizerDelegate
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     CGPoint point = [touch locationInView:gestureRecognizer.view];
-    [self endTextSelectingForPoint:point];
+    [self endTextSelectingForPoint:point inView:gestureRecognizer.view];
     return true;
 }
 
@@ -195,24 +236,35 @@
     [self.view endEditing:true];
     
     CGPoint point = [tapGestureRecognizer locationInView:tapGestureRecognizer.view];
-    [self endTextSelectingForPoint:point];
+    [self endTextSelectingForPoint:point inView:tapGestureRecognizer.view];
 }
 
-- (void)endTextSelectingForPoint:(CGPoint)point {
+- (void)endTextSelectingForPoint:(CGPoint)point inView:(UIView *)view {
     NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:point];
-    UITableViewCell *cell;
+    LYSessionContentView *contentView;
     if (indexPath) {
-        cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+        if ([cell isKindOfClass:[LYSessionCell class]]) {
+            LYSessionCell *sessionCell = (LYSessionCell *)cell;
+            contentView = sessionCell.sessionContentView;
+        }
     }
-    if (cell != _selectingTextCell) {
+    if (contentView != _selectingTextView) {
         [self endTextSelecting];
+    } else {
+        if (_selectingTextView) {
+            CGPoint p = [view convertPoint:point toView:_selectingTextView];
+            if (!CGRectContainsPoint(_selectingTextView.bounds, p)) {
+                [self endTextSelecting];
+            }
+        }
     }
 }
 
 - (void)endTextSelecting {
-    if (_selectingTextCell) {
-        [_selectingTextCell.sessionContentView.contentLabel endTextSelecting];
-        _selectingTextCell = nil;
+    if (_selectingTextView) {
+        [_selectingTextView.contentLabel endTextSelecting];
+        _selectingTextView = nil;
     }
 }
 

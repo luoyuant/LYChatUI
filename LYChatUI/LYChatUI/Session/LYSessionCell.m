@@ -8,6 +8,7 @@
 #import "LYSessionCell.h"
 #import "LYChatConfig.h"
 #import "LYChatConst.h"
+#import "LYSessionTextContentView.h"
 
 @interface LYSessionCell ()
 
@@ -24,7 +25,7 @@
 
 #pragma mark - Setter
 
-- (void)setMessage:(LYSessionMessage *)message {
+- (void)setMessage:(LYSessionMessageModel *)message {
     BOOL shouldUpdate = _message != message;
     _message = message;
     if (shouldUpdate) {
@@ -60,11 +61,19 @@
         _nicknameLabel.hidden = true;
         [self.contentView addSubview:_nicknameLabel];
         
-        _sessionContentView = [[LYSessionContentView alloc] initWithFrame:self.contentView.bounds];
-        [self.contentView addSubview:_sessionContentView];
-        
     }
     return self;
+}
+
+#pragma mark - Add ContentView
+
+- (void)addContentViewIfNotExists {
+    if (_sessionContentView == nil) {
+        Class cls = [self.layout contentViewClass];
+        _sessionContentView = [[cls alloc] initWithFrame:self.contentView.bounds];
+        [self.contentView addSubview:_sessionContentView];
+        [self layoutSessionContentView];
+    }
 }
 
 #pragma mark - Layout
@@ -167,6 +176,9 @@
  * 气泡布局
  */
 - (void)layoutSessionContentView {
+    if (!_sessionContentView) {
+        return;
+    }
     LYSessionCellLayoutType layoutType = self.layout.layoutType;
     
     BOOL onLeft = layoutType == LYSessionCellLayoutTypeLeft;
@@ -176,7 +188,9 @@
     CGFloat y = self.layout.showNickname ? (CGRectGetMaxY(_nicknameLabel.frame) + 2) : margin.top;
     _sessionContentView.frame = CGRectMake(x, y, size.width, size.height);
     _sessionContentView.backgroundColor = onLeft ? _message.config.colorConfig.leftSessionContentColor : _message.config.colorConfig.rightSessionContentColor;
-    _sessionContentView.contentLabel.layer.backgroundColor = _sessionContentView.backgroundColor.CGColor;
+//    if ([_sessionContentView isKindOfClass:[LYSessionTextContentView class]]) {
+//        ((LYSessionTextContentView *)_sessionContentView).contentLabel.layer.backgroundColor = _sessionContentView.backgroundColor.CGColor;
+//    }
 }
 
 #pragma mark - Action
@@ -193,8 +207,10 @@
  * 数据刷新
  */
 - (void)refresh {
+    [self addContentViewIfNotExists];
+    
     BOOL onLeft = self.layout.layoutType == LYSessionCellLayoutTypeLeft;
-    _nicknameLabel.text = _message.user.nickname;
+    _nicknameLabel.text = _message.message.user.nickname;
     _nicknameLabel.textAlignment = onLeft ? NSTextAlignmentLeft : NSTextAlignmentRight;
     
     _nicknameLabel.font = _message.config.fontConfig.nicknameFont;
