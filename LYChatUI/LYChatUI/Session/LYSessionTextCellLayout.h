@@ -13,6 +13,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface LYSessionTextCellLayout : LYSessionCellLayout
 
+/**
+ * label 边距
+ */
+@property (nonatomic, assign) UIEdgeInsets contentLabelInsets;
+
 @end
 
 NS_ASSUME_NONNULL_END

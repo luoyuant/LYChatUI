@@ -57,6 +57,12 @@ typedef NS_ENUM(NSInteger, LYSessionMessageType) {
  */
 @property (nonatomic, strong) NSString *text;
 
+/**
+ * 附件
+ */
+@property (nonatomic, strong) id attachment;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

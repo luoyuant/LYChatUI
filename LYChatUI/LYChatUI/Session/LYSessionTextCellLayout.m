@@ -17,6 +17,23 @@
 
 @implementation LYSessionTextCellLayout
 
+- (instancetype)init {
+    if (self = [super init]) {
+        self.contentPadding = UIEdgeInsetsMake(2, 8, 2, 8);
+    }
+    return self;
+}
+
+/**
+ * label 边距
+ */
+- (UIEdgeInsets)contentLabelInsets {
+    if (UIEdgeInsetsEqualToEdgeInsets(_contentLabelInsets, UIEdgeInsetsZero)) {
+        _contentLabelInsets = UIEdgeInsetsMake(8, 4, 8, 4);
+    }
+    return _contentLabelInsets;
+}
+
 - (Class)contentViewClass {
     return [LYSessionTextContentView class];
 }

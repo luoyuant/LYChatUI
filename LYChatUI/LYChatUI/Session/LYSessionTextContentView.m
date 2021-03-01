@@ -6,6 +6,7 @@
 //
 
 #import "LYSessionTextContentView.h"
+#import "LYSessionTextCellLayout.h"
 
 @implementation LYSessionTextContentView
 
@@ -37,7 +38,10 @@
         LYSessionCellLayout *layout = self.message.layout;
         UIEdgeInsets padding = layout.contentPadding;
         CGSize size = self.contentView.bounds.size;
-        _contentLabel.textContentInsets = layout.contentLabelInsets;
+        if ([layout isKindOfClass:[LYSessionTextCellLayout class]]) {
+            LYSessionTextCellLayout *textLayout = (LYSessionTextCellLayout *)layout;
+            _contentLabel.textContentInsets = textLayout.contentLabelInsets;
+        }
         _contentLabel.frame = CGRectMake(padding.left, padding.top, size.width - padding.left - padding.right, size.height - padding.top - padding.bottom);
     }
 }

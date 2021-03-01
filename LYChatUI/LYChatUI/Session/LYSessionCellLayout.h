@@ -67,11 +67,6 @@ typedef NS_ENUM(NSInteger, LYSessionCellLayoutType) {
 @property (nonatomic, assign) UIEdgeInsets contentMargin;
 
 /**
- * label 边距
- */
-@property (nonatomic, assign) UIEdgeInsets contentLabelInsets;
-
-/**
  * 内容内边距
  */
 @property (nonatomic, assign) UIEdgeInsets contentPadding;

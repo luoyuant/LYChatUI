@@ -95,21 +95,11 @@
 }
 
 /**
- * label 边距
- */
-- (UIEdgeInsets)contentLabelInsets {
-    if (UIEdgeInsetsEqualToEdgeInsets(_contentLabelInsets, UIEdgeInsetsZero)) {
-        _contentLabelInsets = UIEdgeInsetsMake(8, 4, 8, 4);
-    }
-    return _contentLabelInsets;
-}
-
-/**
  * 内容内边距
  */
 - (UIEdgeInsets)contentPadding {
     if (UIEdgeInsetsEqualToEdgeInsets(_contentPadding, UIEdgeInsetsZero)) {
-        _contentPadding = UIEdgeInsetsMake(2, 8, 2, 8);
+        _contentPadding = UIEdgeInsetsMake(10, 12, 10, 12);
     }
     return _contentPadding;
 }
@@ -145,8 +135,7 @@
     CGSize contentSize = [self.contentSizeJson[@(cellWidth)] CGSizeValue];
     if (CGSizeEqualToSize(contentSize, CGSizeZero)) {
         UIEdgeInsets padding = self.contentPadding;
-        UIEdgeInsets contentLabelInsets = self.contentLabelInsets;
-        CGFloat widthOffset = self.contentTriangleWidth + padding.left + padding.right + contentLabelInsets.left + contentLabelInsets.right;
+        CGFloat widthOffset = self.contentTriangleWidth + padding.left + padding.right;
         CGFloat minHeight = self.avatarSize.height;
         CGFloat maxWidth = self.contentMaxWidth - widthOffset;
         
