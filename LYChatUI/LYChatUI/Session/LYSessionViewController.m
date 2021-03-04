@@ -12,8 +12,6 @@
 
 @interface LYSessionViewController () <UIGestureRecognizerDelegate>
 
-@property (nonatomic, weak) LYSessionTextContentView *selectingTextView;
-@property (nonatomic, weak) LYLabel *selectingLabel;
 @property (nonatomic, assign) CGRect selectedTextMenuTargetRect;
 
 @end
@@ -28,10 +26,6 @@
         _selectedTextMenuController.menuItems = @[[[UIMenuItem alloc] initWithTitle:@"复制" action:@selector(lyTextCopy:)], [[UIMenuItem alloc] initWithTitle:@"全选" action:@selector(lyTextSelectAll:)]];
     }
     return _selectedTextMenuController;
-}
-
-- (LYLabel *)selectingLabel {
-    return _selectingTextView.contentLabel;
 }
 
 - (LYSessionManager *)sessionManager {
@@ -96,16 +90,18 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     if (!decelerate) {
-        if (self.selectingTextView && self.selectingTextView.contentLabel.selectedTextRange.length > 0) {
-            [self showSelectTextMenuFromView:self.selectingTextView.contentLabel.selectionView rect:_selectedTextMenuTargetRect];
+        LYSessionTextContentView *selectingTextContentView = [self selectingTextContentView];
+        if (selectingTextContentView) {
+            [self showSelectTextMenuFromView:selectingTextContentView.contentLabel.selectionView rect:_selectedTextMenuTargetRect];
         }
     }
 }
 
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    if (self.selectingTextView && self.selectingTextView.contentLabel.selectedTextRange.length > 0) {
-        [self showSelectTextMenuFromView:self.selectingTextView.contentLabel.selectionView rect:_selectedTextMenuTargetRect];
+    LYSessionTextContentView *selectingTextContentView = [self selectingTextContentView];
+    if (selectingTextContentView) {
+        [self showSelectTextMenuFromView:selectingTextContentView.contentLabel.selectionView rect:_selectedTextMenuTargetRect];
     }
 }
 
@@ -128,11 +124,9 @@
             contentView = sessionCell.sessionContentView;
         }
     }
-    if (_selectingTextView != contentView) {
-        [_selectingTextView.contentLabel endTextSelecting];
-    }
-    if ([contentView isKindOfClass:[LYSessionTextContentView class]]) {
-        _selectingTextView = (LYSessionTextContentView *)contentView;
+    LYSessionTextContentView *selectingTextContentView = [self selectingTextContentView];
+    if (selectingTextContentView && selectingTextContentView != contentView) {
+        [selectingTextContentView.contentLabel endTextSelecting];
     }
 }
 
@@ -146,13 +140,47 @@
 
 - (BOOL)labelShouldShowMenu:(LYLabel *)label selectionView:(nonnull LYTextSelectionView *)selectionView selectedRange:(nonnull LYTextRange *)selectedRange selectionRect:(CGRect)selectionRect {
     [self hideSelectTextMenu];
-    [self showSelectTextMenuFromView:_selectingTextView.contentLabel.selectionView rect:selectionRect];
+    LYSessionTextContentView *selectingTextContentView = [self selectingTextContentView];
+    [self showSelectTextMenuFromView:selectingTextContentView.contentLabel.selectionView rect:selectionRect];
     return true;
 }
 
 - (BOOL)labelShouldHideMenu:(LYLabel *)label selectedRange:(LYTextRange *)selectedRange {
     [self hideSelectTextMenu];
     return true;
+}
+
+#pragma Mark - SelectionView Action
+
+- (LYSessionTextContentView *)selectingTextContentView {
+    LYSessionTextContentView *resultView;
+    for (UITableViewCell *cell in self.tableView.visibleCells) {
+        if ([cell isKindOfClass:[LYSessionCell class]]) {
+            LYSessionContentView *contentView = ((LYSessionCell *)cell).sessionContentView;
+            if ([contentView isKindOfClass:[LYSessionTextContentView class]]) {
+                LYSessionTextContentView *textContentView = (LYSessionTextContentView *)contentView;
+                if (textContentView.contentLabel.selectedTextRange.length > 0) {
+                    resultView = textContentView;
+                    break;
+                }
+            }
+        }
+    }
+    return resultView;
+}
+
+- (void)endTextSelecting {
+    for (UITableViewCell *cell in self.tableView.visibleCells) {
+        if ([cell isKindOfClass:[LYSessionCell class]]) {
+            LYSessionContentView *contentView = ((LYSessionCell *)cell).sessionContentView;
+            if ([contentView isKindOfClass:[LYSessionTextContentView class]]) {
+                LYSessionTextContentView *textContentView = (LYSessionTextContentView *)contentView;
+                if (textContentView.contentLabel.selectedTextRange.length > 0) {
+                    [textContentView.contentLabel endTextSelecting];
+                }
+            }
+        }
+    }
 }
 
 #pragma mark - UIMenuController
@@ -165,7 +193,8 @@
     if (action == @selector(lyTextCopy:)) {
         return true;
     }
-    LYLabel *lb = self.selectingLabel;
+    LYSessionTextContentView *contentView = [self selectingTextContentView];
+    LYLabel *lb = contentView.contentLabel;
     NSUInteger textlen = lb.attributedText ? lb.attributedText.length : lb.text.length;
     BOOL isSelectedAll = lb.selectedTextRange.length == textlen;
     if (action == @selector(lyTextSelectAll:) && !isSelectedAll) {
@@ -175,7 +204,8 @@
 }
 
 - (void)lyTextCopy:(id)sender {
-    LYLabel *lb = _selectingTextView.contentLabel;
+    LYSessionTextContentView *contentView = [self selectingTextContentView];
+    LYLabel *lb = contentView.contentLabel;
     NSRange range = lb.selectedTextRange.asRange;
     if (range.location == NSNotFound || range.length == NSNotFound) return;
     NSString *text;
@@ -189,7 +219,9 @@
 }
 
 - (void)lyTextSelectAll:(id)sender {
-    [self.selectingLabel selectAllText];
+    LYSessionTextContentView *contentView = [self selectingTextContentView];
+    LYLabel *lb = contentView.contentLabel;
+    [lb selectAllText];
 //    [self hideSelectTextMenu];
 //    [self showSelectTextMenuFromView:_selectingTextView.contentLabel.selectionView rect:self.selectedTextMenuTargetRect];
 }
@@ -249,22 +281,16 @@
             contentView = sessionCell.sessionContentView;
         }
     }
-    if (contentView != _selectingTextView) {
+    LYSessionTextContentView *selectingTextContentView = [self selectingTextContentView];
+    if (contentView != selectingTextContentView) {
         [self endTextSelecting];
     } else {
-        if (_selectingTextView) {
-            CGPoint p = [view convertPoint:point toView:_selectingTextView];
-            if (!CGRectContainsPoint(_selectingTextView.bounds, p)) {
+        if (selectingTextContentView) {
+            CGPoint p = [view convertPoint:point toView:selectingTextContentView];
+            if (!CGRectContainsPoint(selectingTextContentView.bounds, p)) {
                 [self endTextSelecting];
             }
         }
-    }
-}
-
-- (void)endTextSelecting {
-    if (_selectingTextView) {
-        [_selectingTextView.contentLabel endTextSelecting];
-        _selectingTextView = nil;
     }
 }
 
