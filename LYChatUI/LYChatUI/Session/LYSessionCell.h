@@ -8,6 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "LYSessionContentView.h"
 #import "LYSessionMessageModel.h"
+#import "LYLabel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -58,6 +59,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @property (nonatomic, weak) id<LYSessionCellDelegate> delegate;
+
+
+@property (nonatomic, weak) id<LYLabelSelectionDelegate> textSelectionDelegate;
 
 /**
  * 更新布局

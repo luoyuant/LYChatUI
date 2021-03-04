@@ -76,6 +76,10 @@
         _sessionContentView = [[cls alloc] initWithFrame:self.contentView.bounds];
         [self.contentView addSubview:_sessionContentView];
         [self layoutSessionContentView];
+        
+        if ([_sessionContentView isKindOfClass:[LYSessionTextContentView class]]) {
+            ((LYSessionTextContentView *)_sessionContentView).contentLabel.selectionDelegate = self.textSelectionDelegate;
+        }
     }
 }
 

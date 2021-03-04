@@ -92,9 +92,7 @@
         if ([cell isKindOfClass:[LYSessionCell class]]) {
             LYSessionCell *sessionCell = (LYSessionCell *)cell;
             sessionCell.delegate = self.sessionViewController;
-            if ([sessionCell.sessionContentView isKindOfClass:[LYSessionTextContentView class]]) {
-                ((LYSessionTextContentView *)sessionCell.sessionContentView).contentLabel.selectionDelegate = self.sessionViewController;
-            }
+            sessionCell.textSelectionDelegate = self.sessionViewController;
             sessionCell.message = message;
         } else if ([cell isKindOfClass:[LYSessionTimestampCell class]] && [message isKindOfClass:[LYSessionTimestampMessage class]]) {
             LYSessionTimestampCell *timestampCell = (LYSessionTimestampCell *)cell;
