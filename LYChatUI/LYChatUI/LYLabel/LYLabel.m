@@ -132,6 +132,7 @@
 - (void)_setLayoutNeedUpdate {
     _state.layoutNeedUpdate = true;
     [self _clearInnerLayout];
+    [self.layer setNeedsDisplay];
 }
 
 - (void)_updateLayout {

@@ -68,7 +68,10 @@
 #pragma mark - Add ContentView
 
 - (void)addContentViewIfNotExists {
-    if (_sessionContentView == nil) {
+    if (_sessionContentView == nil || ![_sessionContentView isKindOfClass:[self.layout contentViewClass]]) {
+        if (_sessionContentView) {
+            [_sessionContentView removeFromSuperview];
+        }
         Class cls = [self.layout contentViewClass];
         _sessionContentView = [[cls alloc] initWithFrame:self.contentView.bounds];
         [self.contentView addSubview:_sessionContentView];
