@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "LYChatUI"
-  s.version      = "1.0.9"
+  s.version      = "1.10.0"
   s.summary      = "Chat UI for iOS"
 
   # This description is used to generate tags and improve search results.
